@@ -1,21 +1,22 @@
 # general settings
-name: train_HAT_SRx3_ImageNet_from_scratch
+name: train_HAT-S_SRx4_L1Loss_train_on_HumanFaces_from_DIV2K_pretrain
 model_type: HATModel
-scale: 3
-num_gpu: auto
+scale: 4
+num_gpu: 1
 manual_seed: 0
 
 # dataset and data loader settings
 datasets:
   train:
-    name: ImageNet
-    type: ImageNetPairedDataset
-    dataroot_gt: datasets/ImageNet/GT
-    meta_info_file: hat/data/meta_info/meta_info_ImageNet_GT.txt
+    name: DIV2K
+    type: PairedImageDataset
+    dataroot_gt: datasets/Human_Faces/Human_Faces_train_HR/GTmod8
+    dataroot_lq: datasets/Human_Faces/Human_Faces_train_LR_deep_blind/X4
+
     io_backend:
       type: disk
 
-    gt_size: 192
+    gt_size: 256
     use_hflip: true
     use_rot: true
 
@@ -26,45 +27,28 @@ datasets:
     dataset_enlarge_ratio: 1
     prefetch_mode: ~
 
-  val_1:
-    name: Set5
+  val:
+    name: HumanFaces
     type: PairedImageDataset
-    dataroot_gt: ./datasets/Set5/GTmod3
-    dataroot_lq: ./datasets/Set5/LRbicx3
+    dataroot_gt: datasets/Human_Faces/Human_Faces_test_HR/GTmod8
+    dataroot_lq: datasets/Human_Faces/Human_Faces_test_LR_deep_blind/X4
     io_backend:
       type: disk
-
-  val_2:
-    name: Set14
-    type: PairedImageDataset
-    dataroot_gt: ./datasets/Set14/GTmod3
-    dataroot_lq: ./datasets/Set14/LRbicx3
-    io_backend:
-      type: disk
-
-  # val_3:
-  #   name: Urban100
-  #   type: PairedImageDataset
-  #   dataroot_gt: ./datasets/urban100/GTmod3
-  #   dataroot_lq: ./datasets/urban100/LRbicx3
-  #   io_backend:
-  #     type: disk
-
 
 # network structures
 network_g:
   type: HAT
-  upscale: 3
+  upscale: 4
   in_chans: 3
   img_size: 64
   window_size: 16
-  compress_ratio: 3
-  squeeze_factor: 30
+  compress_ratio: 24
+  squeeze_factor: 24
   conv_scale: 0.01
   overlap_ratio: 0.5
   img_range: 1.
   depths: [6, 6, 6, 6, 6, 6]
-  embed_dim: 180
+  embed_dim: 144
   num_heads: [6, 6, 6, 6, 6, 6]
   mlp_ratio: 2
   upsampler: 'pixelshuffle'
@@ -72,25 +56,25 @@ network_g:
 
 # path
 path:
-  pretrain_network_g: ~
-  strict_load_g: true
-  resume_state: ~
+  pretrain_network_g: experiments/train_HAT-S_SRx4_L1Loss_train_on_HumanFaces_from_DIV2K_pretrain/models/net_g_80000.pth
+  strict_load_g: false
+  resume_state: experiments/train_HAT-S_SRx4_L1Loss_train_on_HumanFaces_from_DIV2K_pretrain/training_states/80000.state
 
 # training settings
 train:
   ema_decay: 0.999
   optim_g:
     type: Adam
-    lr: !!float 2e-4
+    lr: !!float 1e-4
     weight_decay: 0
     betas: [0.9, 0.99]
 
   scheduler:
     type: MultiStepLR
-    milestones: [300000, 500000, 650000, 700000, 750000]
+    milestones: [125000, 200000, 225000, 250000]
     gamma: 0.5
 
-  total_iter: 800000
+  total_iter: 250000
   warmup_iter: -1  # no warm up
 
   # losses
@@ -101,26 +85,26 @@ train:
 
 # validation settings
 val:
-  val_freq: !!float 1e4
-  save_img: false
+  val_freq: !!float 2e4
+  save_img: true
   pbar: False
 
   metrics:
     psnr:
       type: calculate_psnr
-      crop_border: 3
+      crop_border: 4
       test_y_channel: true
       better: higher  # the higher, the better. Default: higher
     ssim:
       type: calculate_ssim
-      crop_border: 3
+      crop_border: 4
       test_y_channel: true
       better: higher  # the higher, the better. Default: higher
 
 # logging settings
 logger:
   print_freq: 100
-  save_checkpoint_freq: !!float 1e4
+  save_checkpoint_freq: !!float 2e4
   use_tb_logger: true
   wandb:
     project: ~

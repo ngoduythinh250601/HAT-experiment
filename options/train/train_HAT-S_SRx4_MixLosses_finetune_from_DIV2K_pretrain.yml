@@ -1,18 +1,22 @@
+# GENERATE TIME: Mon Nov  6 09:33:57 2023
+# CMD:
+# ./hat/train.py -opt ./options/train/train_HAT-S_SRx4_MixLosses_finetune_from_DIV2K_pretrain.yml
+
 # general settings
-name: train_HAT_SRx4_finetune_from_SRx2
+name: train_HAT-S_SRx4_MixLosses_finetune_from_DIV2K_pretrain
 model_type: HATModel
 scale: 4
-num_gpu: auto
+num_gpu: 1
 manual_seed: 0
 
 # dataset and data loader settings
 datasets:
   train:
-    name: DF2K
+    name: DIV2K
     type: PairedImageDataset
-    dataroot_gt: datasets/DF2K/DF2K_HR_sub
-    dataroot_lq: datasets/DF2K/DF2K_bicx4_sub
-    meta_info_file: hat/data/meta_info/meta_info_DF2Ksub_GT.txt
+    dataroot_gt: datasets/DIV2K-X8/DIV2K_train_HR
+    dataroot_lq: datasets/DIV2K-X8/DIV2K_train_LR_bicubic/X4
+
     io_backend:
       type: disk
 
@@ -27,30 +31,21 @@ datasets:
     dataset_enlarge_ratio: 1
     prefetch_mode: ~
 
-  val_1:
+  val:
     name: Set5
     type: PairedImageDataset
-    dataroot_gt: ./datasets/Set5/GTmod4
-    dataroot_lq: ./datasets/Set5/LRbicx4
+    dataroot_gt: datasets/Set5/GTmod12
+    dataroot_lq: datasets/Set5/LRbicx4
     io_backend:
       type: disk
 
   val_2:
     name: Set14
     type: PairedImageDataset
-    dataroot_gt: ./datasets/Set14/GTmod4
-    dataroot_lq: ./datasets/Set14/LRbicx4
+    dataroot_gt: datasets/Set14/GTmod12
+    dataroot_lq: datasets/Set14/LRbicx4
     io_backend:
       type: disk
-
-  # val_3:
-  #   name: Urban100
-  #   type: PairedImageDataset
-  #   dataroot_gt: ./datasets/urban100/GTmod4
-  #   dataroot_lq: ./datasets/urban100/LRbicx4
-  #   io_backend:
-  #     type: disk
-
 
 # network structures
 network_g:
@@ -59,13 +54,13 @@ network_g:
   in_chans: 3
   img_size: 64
   window_size: 16
-  compress_ratio: 3
-  squeeze_factor: 30
+  compress_ratio: 24
+  squeeze_factor: 24
   conv_scale: 0.01
   overlap_ratio: 0.5
   img_range: 1.
   depths: [6, 6, 6, 6, 6, 6]
-  embed_dim: 180
+  embed_dim: 144
   num_heads: [6, 6, 6, 6, 6, 6]
   mlp_ratio: 2
   upsampler: 'pixelshuffle'
@@ -73,9 +68,8 @@ network_g:
 
 # path
 path:
-  pretrain_network_g: ./experiments/train_HAT_SRx2_from_scratch/models/net_g_latest.pth
-  param_key_g: 'params_ema'
-  strict_load_g: true
+  pretrain_network_g: experiments/train_HAT-S_SRx4_from_scratch/models/net_g_240000.pth
+  strict_load_g: false
   resume_state: ~
 
 # training settings
@@ -89,22 +83,24 @@ train:
 
   scheduler:
     type: MultiStepLR
-    milestones: [125000, 200000, 225000, 240000]
+    milestones: [125000, 200000, 225000, 250000]
     gamma: 0.5
 
   total_iter: 250000
   warmup_iter: -1  # no warm up
 
   # losses
-  pixel_opt:
-    type: L1Loss
-    loss_weight: 1.0
+  perceptual_opt:
+    type: PerceptualLoss_L1Loss
+    layer_weights: {'conv2_2': 1.}
     reduction: mean
+    loss_weight: 50.0
+    perceptual_weight: 1.0
 
 # validation settings
 val:
-  val_freq: !!float 5e3
-  save_img: false
+  val_freq: !!float 2e4
+  save_img: true
   pbar: False
 
   metrics:
@@ -122,7 +118,7 @@ val:
 # logging settings
 logger:
   print_freq: 100
-  save_checkpoint_freq: !!float 5e3
+  save_checkpoint_freq: !!float 2e4
   use_tb_logger: true
   wandb:
     project: ~
