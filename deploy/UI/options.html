@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>SISR</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/list-groups/">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <link rel="stylesheet" type="text/css" href="./css/list-groups.css">
+
+</head>
+
+<body>
+  <div class="d-flex flex-row align-items-center justify-content-center">
+    <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+      <div class="list-group max-width-300px list-group-checkable d-grid gap-2 border-0">
+        <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableUpscales"
+          id="listGroupCheckableUpscales1" value="" checked="">
+        <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableUpscales1">
+          <div class="spinner-border text-light position-absolute end-100 top-0" style="display: none" role="status"
+            id="spinner1">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          Upscale x4
+          <span class="d-block small opacity-50">Supports upscaling images up to 4 times</span>
+        </label>
+
+        <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableUpscales"
+          id="listGroupCheckableUpscales2" value="">
+        <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableUpscales2">
+          <div class="spinner-border text-light position-absolute end-100 top-0" style="display: none" role="status"
+            id="spinner2">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          Upscale x8
+          <span class="d-block small opacity-50">Supports upscaling images up to 8 times</span>
+        </label>
+      </div>
+    </div>
+    <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+      <div class="list-group max-width-600px list-group-checkable d-grid gap-2 border-0">
+        <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableModels"
+          id="listGroupCheckableModels1" value="" checked="">
+        <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableModels1">
+          <div class="spinner-border text-light position-absolute end-100 top-0" style="display: none" role="status"
+            id="spinner3">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          HAT-S
+          <span class="d-block small opacity-50">Original HAT-S model without any modifications</span>
+        </label>
+
+        <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableModels"
+          id="listGroupCheckableModels2" value="">
+        <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableModels2">
+          <div class="spinner-border text-light position-absolute end-100 top-0" style="display: none" role="status"
+            id="spinner4">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          HAT-S with Patch-Mosaic
+          <span class="d-block small opacity-50">The HAT-S model applies Patch-Mosaic data augmentation</span>
+        </label>
+
+        <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableModels"
+          id="listGroupCheckableModels3" value="">
+        <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableModels3">
+          <div class="spinner-border text-light position-absolute end-100 top-0" style="display: none" role="status"
+            id="spinner5">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          HAT-S with Perceptual Loss
+          <span class="d-block small opacity-50">The HAT-S model applies Perceptual Loss</span>
+        </label>
+
+        <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableModels"
+          id="listGroupCheckableModels4" value="">
+
+        <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableModels4">
+          <div class="spinner-border text-light position-absolute end-100 top-0" style="display: none" role="status"
+            id="spinner6">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          HAT-S with MixLosses Loss
+          <span class="d-block small opacity-50">The HAT-S model uses L1 Loss and Perceptual Loss simultaneously</span>
+        </label>
+
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="./js/options.js"></script>
+
+</html>

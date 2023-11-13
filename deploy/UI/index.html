@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>SISR</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+
+<body>
+  <div class="button-container">
+    <button class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024" stroke-width="0"
+        fill="currentColor" stroke="currentColor" class="icon">
+        <path
+          d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7 23.1 23.1L882 542.3h-96.1z">
+        </path>
+      </svg>
+    </button>
+    <button class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" aria-hidden="true" viewBox="0 0 24 24"
+        stroke-width="2" fill="none" stroke="currentColor" class="icon">
+        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round" stroke-linecap="round">
+        </path>
+      </svg>
+    </button>
+    <button class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="0"
+        fill="currentColor" stroke="currentColor" class="icon">
+        <path
+          d="M12 2.5a5.5 5.5 0 0 1 3.096 10.047 9.005 9.005 0 0 1 5.9 8.181.75.75 0 1 1-1.499.044 7.5 7.5 0 0 0-14.993 0 .75.75 0 0 1-1.5-.045 9.005 9.005 0 0 1 5.9-8.18A5.5 5.5 0 0 1 12 2.5ZM8 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z">
+        </path>
+      </svg>
+    </button>
+
+    <button class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round"
+        viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+        <circle r="1" cy="21" cx="9"></circle>
+        <circle r="1" cy="21" cx="20"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="home-container">
+    <div class="introduction" style="margin-right: 20px; margin-left: -10%;">
+      <span style="color: #fff; font-size: 60px;">Enhance image resolution</span><br>
+      <span style="color: #ffffff; font-size: 45px; ">Free to Use</span><br>
+      <span style="color: #fff; font-size: 20px;">Make blurry picture clear in seconds. Enhancement is easy in Photo
+        Enhancer.</span>
+    </div>
+
+    <label for="file" class="custom-file-upload">
+      <div class="icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" />
+        </svg>
+      </div>
+      <form action="" id="form-upload">
+        <input type="file" name="image" accept="image/png, image/jpeg, image/jpg" title="Choose image file"
+          id="image-file" style="color: #fff;" onchange="showMyImage(this)">
+        <input type="submit" value="Upload" id="send-image">
+
+      </form>
+
+    </label>
+  </div>
+
+  <button id="changeModelButton">Change Model</button>
+  <div class="result-container"
+    style="  border-color: #fff; border-radius: 20px; margin-bottom: 10%; margin-top: 2%; justify-content: center;">
+    <div class="image-container-result" id="image-container-result"
+      style="border: 20px; color: white; text-align: center;justify-content: center;">
+      <h1 style=" margin-bottom: 5%; text-align: center;">ENHANCE IMAGE SOLUTION RESULT</h1>
+      <div class="radio-inputs" style="margin-bottom: 2.5%; margin-top: -2.5%;">
+        <label class="radio">
+          <input type="radio" name="radio" checked="">
+          <span class="name">HAT-S_SRx4</span>
+        </label>
+        <label class="radio">
+          <input type="radio" name="radio">
+          <span class="name">SWINIR-lightweightx2</span>
+        </label>
+        <label class="radio">
+          <input type="radio" name="radio">
+          <span class="name">SWINIR-lightweightx2</span>
+        </label>
+        <label class="radio">
+          <input type="radio" name="radio">
+          <span class="name">SWINIR-lightweightx2</span>
+        </label>
+        <label class="radio">
+          <input type="radio" name="radio">
+          <span class="name">Vue</span>
+        </label>
+      </div>
+      <img src="upload.jpg" alt="Input Image" id="thumbnil"
+        style="height: 25%; width: 30%; margin-right: 20px;  border-radius: 20px; border: 5px solid #555;">
+      <img src="download.jpg" alt="Output Image" class="output-image" id="hrImage"
+        style="height: 25%; width: 30%; border-radius: 20px; border: 5px solid #555;">
+
+
+    </div>
+    <button class="button-download">
+      <span class="button-content-download">Download </span>
+    </button>
+    <button class="button-delete">
+      <span class="button-content-delete">Delete</span>
+    </button>
+
+  </div>
+  <!-- compare area -->
+  <h1 style="text-align: center; font-size: 50px;">Best Image Enhancer - See Everything In Detail</h1>
+  <h2 style="text-align: center; font-size: 20px;margin-top: 1%;margin-bottom: 2%;">Enlarge and enhance your photos to
+    improve image quality. Make them sharper, crisper, and cleaner</h2>
+  <div class="grid-container">
+    <div class="grid-item">
+      <div class="c-compare" style="--value:50%;">
+        <img class="c-compare__left" src="monarch_original.png" alt="Color" />
+        <img class="c-compare__right" src="monarch.png" alt="B/W" />
+        <input type="range" class="c-rng c-compare__range" min="0" max="100" value="50"
+          oninput="this.parentNode.style.setProperty('--value', `${this.value}%`)" />
+      </div>
+      <h1 style="font-size: 15px; text-align: center;">function introduction</h1>
+      <p style="color: #fff;text-align: center;"> ở đây giới thiệu chức năng của từng model </p>
+
+    </div>
+    <div class="grid-item">
+      <div class="c-compare" style="--value:50%;">
+        <img class="c-compare__left" src="monarch_original.png" alt="Color" />
+        <img class="c-compare__right" src="monarch.png" alt="B/W" />
+        <input type="range" class="c-rng c-compare__range" min="0" max="100" value="50"
+          oninput="this.parentNode.style.setProperty('--value', `${this.value}%`)" />
+      </div>
+      <h1 style="font-size: 15px; text-align: center;">function introduction</h1>
+      <p style="color: #fff;text-align: center;"> ở đây giới thiệu chức năng của từng model </p>
+    </div>
+    <div class="grid-item">
+      <div class="c-compare" style="--value:50%;">
+        <img class="c-compare__left" src="monarch_original.png" alt="Color" />
+        <img class="c-compare__right" src="monarch.png" alt="B/W" />
+        <input type="range" class="c-rng c-compare__range" min="0" max="100" value="50"
+          oninput="this.parentNode.style.setProperty('--value', `${this.value}%`)" />
+      </div>
+      <h1 style="font-size: 15px; text-align: center;">function introduction</h1>
+      <p style="color: #fff;text-align: center;"> ở đây giới thiệu chức năng của từng model </p>
+    </div>
+    <div class="grid-item">
+      <div class="c-compare" style="--value:50%;">
+        <img class="c-compare__left" src="monarch_original.png" alt="Color" />
+        <img class="c-compare__right" src="monarch.png" alt="B/W" />
+        <input type="range" class="c-rng c-compare__range" min="0" max="100" value="50"
+          oninput="this.parentNode.style.setProperty('--value', `${this.value}%`)" />
+      </div>
+      <h1 style="font-size: 15px; text-align: center;">function introduction</h1>
+      <p style="color: #fff;text-align: center;"> ở đây giới thiệu chức năng của từng model </p>
+    </div>
+    <div class="grid-item">
+      <div class="c-compare" style="--value:50%;">
+        <img class="c-compare__left" src="monarch_original.png" alt="Color" />
+        <img class="c-compare__right" src="monarch.png" alt="B/W" />
+        <input type="range" class="c-rng c-compare__range" min="0" max="100" value="50"
+          oninput="this.parentNode.style.setProperty('--value', `${this.value}%`)" />
+      </div>
+      <h1 style="font-size: 15px; text-align: center;">function introduction</h1>
+      <p style="color: #fff;text-align: center;"> ở đây giới thiệu chức năng của từng model </p>
+    </div>
+    <div class="grid-item">
+      <div class="c-compare" style="--value:50%;">
+        <img class="c-compare__left" src="monarch_original.png" alt="Color" />
+        <img class="c-compare__right" src="monarch.png" alt="B/W" />
+        <input type="range" class="c-rng c-compare__range" min="0" max="100" value="50"
+          oninput="this.parentNode.style.setProperty('--value', `${this.value}%`)" />
+      </div>
+      <h1 style="font-size: 15px; text-align: center;">function introduction</h1>
+      <p style="color: #fff;text-align: center;"> ở đây giới thiệu chức năng của từng model </p>
+    </div>
+  </div>
+
+
+  <!-- time-line area -->
+  <div class="timeline-area" style="margin-top: 5%;">
+    <div class="container">
+      <div class="timelines">
+        <h2>Timelines</h2>
+      </div>
+      <div class="all-timelines">
+        <!--SINGLE TIMELINE-->
+        <div class="single-timeline d-flex-2">
+          <div class="timeline-blank"></div>
+          <div class="timeline-text d-flex-2">
+            <span>
+              <h6>April 2019</h6> — The launch of Aryacoin; AYA ICO, resulting in over 30BTC collected
+            </span>
+            <div class="t-square"></div>
+          </div>
+        </div>
+        <!--SINGLE TIMELINE-->
+        <div class="single-timeline d-flex-2">
+          <div class="timeline-blank"></div>
+          <div class="timeline-text d-flex-2">
+            <span>
+              <h6>December 2019 </h6>— The launch of AYA Pay
+            </span>
+            <div class="t-square"></div>
+          </div>
+        </div>
+        <!--SINGLE TIMELINE-->
+        <div class="single-timeline d-flex-2">
+          <div class="timeline-blank"></div>
+          <div class="timeline-text d-flex-2">
+            <span>
+              <h6>April 2020</h6> — The successful Hamedan Hardfork, supported by all AYA exchanges, aimed at
+              integrating the dPoW algorithm, improving the security of the AYA blockchain.
+            </span>
+            <div class="t-square"></div>
+          </div>
+        </div>
+        <!--SINGLE TIMELINE-->
+        <div class="single-timeline d-flex-2">
+          <div class="timeline-blank"></div>
+          <div class="timeline-text d-flex-2">
+            <span>
+              <h6>June 2020</h6> — Aryna Exchange goes live, opening more trading opportunities globally
+            </span>
+            <div class="t-square"></div>
+          </div>
+        </div>
+        <!--SINGLE TIMELINE-->
+        <div class="single-timeline d-flex-2">
+          <div class="timeline-blank"></div>
+          <div class="timeline-text d-flex-2">
+            <span>
+              <h6>July 2020</h6> — The enabling of our Coin Exchanger
+            </span>
+            <div class="t-square"></div>
+          </div>
+        </div>
+        <!--SINGLE TIMELINE-->
+        <div class="single-timeline d-flex-2">
+          <div class="timeline-blank"></div>
+          <div class="timeline-text d-flex-2">
+            <span>
+              <h6>November 2020</h6> — The implementation of Smart Contracts into the Aryacoin Ecosystem
+            </span>
+            <div class="t-square"></div>
+          </div>
+        </div>
+        <!--SINGLE TIMELINE-->
+        <div class="single-timeline d-flex-2">
+          <div class="timeline-blank"></div>
+          <div class="timeline-text d-flex-2">
+            <span>
+              <h6>Q1 2021</h6> — Alef B goes live (more details coming soon)
+            </span>
+            <div class="t-square"></div>
+          </div>
+        </div>
+        <div class="single-timeline d-flex-2">
+          <div class="timeline-blank"></div>
+          <div class="timeline-text d-flex-2">
+            <span>
+              <h6>Q1 2021</h6> — Alef B goes live (more details coming soon)
+            </span>
+            <div class="t-square"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p
+      style="color: #fff; margin:0 auto; text-align: center; text-size-adjust: 40px; margin-top: 10%; margin-bottom: -5%; font-size: 40px;">
+      DEMO ENHANCE IMAGE SOLUTION </p>
+    <div class="wrapper" style="width:100%; height: 700px;">
+      <div class="container-demo-slider"></div>
+      <div class="container-demo-slider-2"></div>
+    </div>
+
+  </div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="./js/script.js"></script>
+
+</html>
