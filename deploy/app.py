@@ -11,27 +11,44 @@ app  = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+class Info:
+    def __init__(self, models_dir, default_model_name):
+        self.models_dir = models_dir
+        self.default_model_name = default_model_name
+    
+    def set_Default_model_name(self, default_model_name):
+        self.default_model_name = default_model_name
+        
+    def set_Models_dir(self, models_dir):
+        self.models_dir = models_dir
+
 @app.route("/change_model", methods=["POST"])
 def change_model():
     ans = dict()
     try:
         data = request.get_json()
-        try:
-            if 'modelName' in data and data['modelName']:
-                model_name = data['modelName']
-                try:
-                    for file_name in models_dir:
-                        if model_name in file_name:
-                            model = Model(os.path.join(models_dir, file_name))
-                            print("Model has been changed:", model.model.opt['name'])
-                    ans["status"] = "success"
-                    ans["msg"] = "model had changed: " + model_name
-                except:
-                    ans["status"] = "failed"
-                    ans["msg"] = "can't change model"
-            else:
-                raise Exception()
-        except:
+        print("request from user: ", data)
+        if str(data['modelName']).startswith("HAT-S"):
+            model_name = str(data['modelName'])
+            if info.default_model_name == model_name:
+                ans["status"] = "success"
+                ans["msg"] = "model had changed: " + model_name
+                return jsonify(ans)
+            try:
+                for file_name in os.listdir(info.models_dir):
+                    if model_name in file_name:
+                        model = Model(os.path.join(info.models_dir, file_name))
+                        print("Model has been changed:", model.model.opt['name'])
+                        ans["status"] = "success"
+                        ans["msg"] = "model had changed: " + model_name + ".yml"
+                        info.default_model_name = model_name
+                        return jsonify(ans)
+                ans["status"] = "failed"
+                ans["msg"] = "can't find model"
+            except:
+                ans["status"] = "failed"
+                ans["msg"] = "can't change model"
+        else:
             ans["status"] = "failed"
             ans["msg"] = "invalid data"
     except:
@@ -50,14 +67,15 @@ def upload():
         
         try:
             sr_cv2_img = model.process(cv2_image)
-            numpy_array = cv2.cvtColor(sr_cv2_img, cv2.COLOR_BGR2RGB)
-            sr_pil_image = Image.fromarray(numpy_array)
-            result["status"] = "success"
-            result["msg"] = "success"
+            np_array = cv2.cvtColor(sr_cv2_img, cv2.COLOR_BGR2RGB)
+            sr_pil_image = Image.fromarray(np_array)
+            
             image_bytes = BytesIO()
-            print(image_bytes)
             sr_pil_image.save(image_bytes, format='png')
             image_bytes.seek(0)
+            
+            result["status"] = "success"
+            result["msg"] = "success"
             return send_file(image_bytes, mimetype='image/png')
             # result["img"] = sr_pil_image
         except:
@@ -71,8 +89,7 @@ def upload():
 
 
 if __name__ == "__main__":
-    models_dir = "E:/HAT-main/deploy/options"
-    default_model_name = "HAT-S_SRx4_Patch-Mosaic"
-    model = Model(os.path.join(models_dir, default_model_name + '.yml'))
+    info = Info(models_dir="E:\Github\HAT-experiment\deploy\options", default_model_name="HAT-S_SRx4_Patch-Mosaic")
+    model = Model(os.path.join(info.models_dir, info.default_model_name + '.yml'))
     print("Default model name:", model.model.opt['name'])
     app.run()
