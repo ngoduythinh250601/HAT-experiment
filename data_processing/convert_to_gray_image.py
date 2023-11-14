@@ -1,9 +1,6 @@
-import cv2
 import os
 from PIL import Image
 import random
-
-import numpy as np
 
 def convert_to_gray_scale(image_path):
     img = Image.open(image_path)

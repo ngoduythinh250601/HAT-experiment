@@ -26,7 +26,9 @@ def filter_images_by_size(checking_dir, dependent_dirs, max_width, max_height):
         
 
 if __name__ == "__main__": 
-    filter_images_by_size(checking_dir="datasets/Human_Faces/Human_Faces_test_HR/GTmod8", 
-                          dependent_dirs=["datasets/Human_Faces/Human_Faces_test_LR_deep_blind/X4", "datasets/Human_Faces/Human_Faces_test_LR_deep_blind/X8"], 
-                          max_width=2048, 
-                          max_height=2048)
+    # filter_images_by_size(checking_dir="datasets/Human_Faces/Human_Faces_test_HR/GTmod8", 
+    #                       dependent_dirs=["datasets/Human_Faces/Human_Faces_test_LR_deep_blind/X4", "datasets/Human_Faces/Human_Faces_test_LR_deep_blind/X8"], 
+    #                       max_width=2048, 
+    #                       max_height=2048)
+
+    pass

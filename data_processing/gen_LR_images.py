@@ -21,9 +21,13 @@ def gen_LR_bicubic(image_HR_dir, image_LR_dir, scale=8):
         LR_image.save(os.path.join(image_LR_dir, file_name_saved))
         print(file_name_saved, "LR has been saved! Image size: ", img.size, " -> ", LR_image.size, "divisible" if width%scale == 0 and heigh%scale == 0 else "not divisible")
 
-gen_LR_bicubic(image_HR_dir = "E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_train_HR/GTmod8", 
-               image_LR_dir = "E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_train_LR/LRbicx4", 
-               scale=4)
-# gen_LR_bicubic(image_HR_dir = "E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_test_HR/GTmod8", 
-#                image_LR_dir = "E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_test_LR/LRbicx4", 
-#                scale=4)
+
+if __name__ == "__main__": 
+    # gen_LR_bicubic(image_HR_dir = "E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_train_HR/GTmod8", 
+    #             image_LR_dir = "E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_train_LR/LRbicx4", 
+    #             scale=4)
+    # gen_LR_bicubic(image_HR_dir = "E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_test_HR/GTmod8", 
+    #                image_LR_dir = "E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_test_LR/LRbicx4", 
+    #                scale=4)
+
+    pass

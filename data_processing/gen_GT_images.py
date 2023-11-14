@@ -27,9 +27,11 @@ def gen_GT(image_HR_dir, saved_HR_dir, scale):
 
 
 if __name__ == "__main__": 
-    gen_GT(image_HR_dir=r"e:\FPT University\Semester 9\AIP490\Data\Train\Human_Faces\Human_Faces_train_HR\original", 
-                  saved_HR_dir=r"e:\FPT University\Semester 9\AIP490\Data\Train\Human_Faces\Human_Faces_train_HR\GTmod8", 
-                  scale = 8)
+    # gen_GT(image_HR_dir=r"e:\FPT University\Semester 9\AIP490\Data\Train\Human_Faces\Human_Faces_train_HR\original", 
+    #               saved_HR_dir=r"e:\FPT University\Semester 9\AIP490\Data\Train\Human_Faces\Human_Faces_train_HR\GTmod8", 
+    #               scale = 8)
     # gen_GT(image_HR_dir=r"e:\FPT University\Semester 9\AIP490\Data\Train\Human_Faces\Human_Faces_test_HR\original", 
     #               saved_HR_dir=r"e:\FPT University\Semester 9\AIP490\Data\Train\Human_Faces\Human_Faces_test_HR\GTmod8", 
     #               scale = 8)
+
+    pass

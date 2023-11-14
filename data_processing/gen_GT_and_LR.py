@@ -1,8 +1,6 @@
-from torchvision import transforms
 import os
 import random
 from PIL import Image
-import matplotlib.pyplot as plt
 
 def gen_GT_and_LR(image_HR_dir, saved_HR_dir, saved_LR_dir, scale):
     """
@@ -41,17 +39,17 @@ if __name__ == "__main__":
     #               saved_HR_dir="E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_test_HR/GTmod8", 
     #               saved_LR_dir="E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_test_LR/LRbicx8", 
     #               scale = 8)
-    # gen_GT_and_LR(image_HR_dir=r"/users/thinhnd/AIP490/HAT/datasets/DIV2K-Mosaic/DIV2K_train_HR", 
-    #               saved_HR_dir=r"/users/thinhnd/AIP490/HAT/datasets/DIV2K-Mosaic/DIV2K_train_HR_GTmod8", 
-    #               saved_LR_dir=r"/users/thinhnd/AIP490/HAT/datasets/DIV2K-Mosaic/DIV2K_train_LR_bicubic/X8", 
+    # gen_GT_and_LR(image_HR_dir=r"/fpt/thinhnd/AI-Capstone/HAT-experiment/datasets/DIV2K-Mosaic/DIV2K_train_HR", 
+    #               saved_HR_dir=r"/fpt/thinhnd/AI-Capstone/HAT-experiment/datasets/DIV2K-Mosaic/DIV2K_train_HR_GTmod8", 
+    #               saved_LR_dir=r"/fpt/thinhnd/AI-Capstone/HAT-experiment/datasets/DIV2K-Mosaic/DIV2K_train_LR_bicubic/X8", 
     #               scale = 8)
-    # gen_GT_and_LR(image_HR_dir=r"/users/thinhnd/AIP490/HAT/datasets/Set5/original", 
-    #               saved_HR_dir=r"/users/thinhnd/AIP490/HAT/datasets/Set5/GTmod8", 
-    #               saved_LR_dir=r"/users/thinhnd/AIP490/HAT/datasets/Set5/LRbicx8", 
+    # gen_GT_and_LR(image_HR_dir=r"/fpt/thinhnd/AI-Capstone/HAT-experiment/datasets/Set5/original", 
+    #               saved_HR_dir=r"/fpt/thinhnd/AI-Capstone/HAT-experiment/datasets/Set5/GTmod8", 
+    #               saved_LR_dir=r"/fpt/thinhnd/AI-Capstone/HAT-experiment/datasets/Set5/LRbicx8", 
     #               scale = 8)
-    # gen_GT_and_LR(image_HR_dir=r"/users/thinhnd/AIP490/HAT/datasets/Set14/original", 
-    #               saved_HR_dir=r"/users/thinhnd/AIP490/HAT/datasets/Set14/GTmod8", 
-    #               saved_LR_dir=r"/users/thinhnd/AIP490/HAT/datasets/Set14/LRbicx8", 
+    # gen_GT_and_LR(image_HR_dir=r"/fpt/thinhnd/AI-Capstone/HAT-experiment/datasets/Set14/original", 
+    #               saved_HR_dir=r"/fpt/thinhnd/AI-Capstone/HAT-experiment/datasets/Set14/GTmod8", 
+    #               saved_LR_dir=r"/fpt/thinhnd/AI-Capstone/HAT-experiment/datasets/Set14/LRbicx8", 
     #               scale = 8)
 
 

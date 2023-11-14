@@ -9,5 +9,7 @@ def naming(folder_path):
         os.rename(old_path, new_path)
 
 if __name__ == "__main__":
-    naming(r"e:\FPT University\Semester 9\AIP490\Data\Train\Human_Faces\Human_Faces_test_HR\GTmod8")
-    naming(r"e:\FPT University\Semester 9\AIP490\Data\Train\Human_Faces\Human_Faces_train_HR\GTmod8")
+    # naming(r"e:\FPT University\Semester 9\AIP490\Data\Train\Human_Faces\Human_Faces_test_HR\GTmod8")
+    # naming(r"e:\FPT University\Semester 9\AIP490\Data\Train\Human_Faces\Human_Faces_train_HR\GTmod8")
+
+    pass

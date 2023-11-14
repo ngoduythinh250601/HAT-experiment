@@ -26,11 +26,13 @@ def filter_images_by_size(checking_dir, dependent_dirs, min_width, min_height):
         
 
 if __name__ == "__main__": 
-    filter_images_by_size(checking_dir="datasets/Human_Faces/Human_Faces_test_LR_deep_blind/X4", 
-                          dependent_dirs=["datasets/Human_Faces/Human_Faces_test_HR/GTmod8", "datasets/Human_Faces/Human_Faces_test_LR_deep_blind/X8"], 
-                          min_width=64, 
-                          min_height=64)
-    filter_images_by_size(checking_dir="datasets/Human_Faces/Human_Faces_train_LR_deep_blind/X4", 
-                          dependent_dirs=["datasets/Human_Faces/Human_Faces_train_HR/GTmod8", "datasets/Human_Faces/Human_Faces_train_LR_deep_blind/X8"], 
-                          min_width=64, 
-                          min_height=64)
+    # filter_images_by_size(checking_dir="datasets/Human_Faces/Human_Faces_test_LR_deep_blind/X4", 
+    #                       dependent_dirs=["datasets/Human_Faces/Human_Faces_test_HR/GTmod8", "datasets/Human_Faces/Human_Faces_test_LR_deep_blind/X8"], 
+    #                       min_width=64, 
+    #                       min_height=64)
+    # filter_images_by_size(checking_dir="datasets/Human_Faces/Human_Faces_train_LR_deep_blind/X4", 
+    #                       dependent_dirs=["datasets/Human_Faces/Human_Faces_train_HR/GTmod8", "datasets/Human_Faces/Human_Faces_train_LR_deep_blind/X8"], 
+    #                       min_width=64, 
+    #                       min_height=64)
+
+    pass
