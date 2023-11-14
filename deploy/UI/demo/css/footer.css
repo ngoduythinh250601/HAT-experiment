@@ -75,19 +75,3 @@
   display: block !important;
 }
 
-.icon-link {
-  display: inline-block;
-  transition: transform 0.2s ease-in-out;
-}
-
-.icon-link:hover {
-  transform: translateY(-3px); /* Thay đổi giá trị để điều chỉnh hiệu ứng nhảy */
-}
-
-#facebook path {
-  fill: black; /* Màu mặc định của icon */
-}
-
-#facebook:hover path {
-  fill: #000; /* Màu khi hover */
-}

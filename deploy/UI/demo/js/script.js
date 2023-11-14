@@ -1,22 +1,22 @@
 function displayImage(input) {
-    // Get the <rect> and <text> elements
-    var rect = document.getElementById('placeholder-rect');
-    var text = document.getElementById('thumbnil');
+  // Get the <rect> and <text> elements
+  var rect = document.getElementById('placeholder-rect');
+  var text = document.getElementById('thumbnil');
 
-    // Remove any existing patterns
-    var existingPattern = document.getElementById('inputimage');
-    if (existingPattern) {
+  // Remove any existing patterns
+  var existingPattern = document.getElementById('inputimage');
+  if (existingPattern) {
       existingPattern.parentNode.removeChild(existingPattern);
-    }
+  }
 
-    // Get the selected file from the input
-    var file = input.files[0];
+  // Get the selected file from the input
+  var file = input.files[0];
 
-    // Create a FileReader to read the selected file
-    var reader = new FileReader();
+  // Create a FileReader to read the selected file
+  var reader = new FileReader();
 
-    // Set up the FileReader to display the image when it's loaded
-    reader.onload = function(e) {
+  // Set up the FileReader to display the image when it's loaded
+  reader.onload = function (e) {
       // Set the <rect> fill to the image
       rect.setAttribute('fill', 'url(#inputimage)');
 
@@ -42,23 +42,20 @@ function displayImage(input) {
       // Append the image to the pattern, and the pattern to the SVG
       pattern.appendChild(image);
       rect.parentNode.appendChild(pattern);
-    };
 
-    // Read the selected file as a data URL
-    reader.readAsDataURL(file);
-    var runButtons = document.getElementsByClassName('run');
-    var downloadButtons = document.getElementsByClassName('download');
+      // Enable the buttons and set their styles
+      var runButton = document.getElementById('upload');
 
-    // Bật trạng thái của các button
-    for (var i = 0; i < runButtons.length; i++) {
-        runButtons[i].disabled = false;
-    }
+      runButton.disabled = false;
+      runButton.style.backgroundColor = ''; // Set the background color to default
 
-    for (var i = 0; i < downloadButtons.length; i++) {
-        downloadButtons[i].disabled = false;
-    }
+  };
 
-  }
+  // Read the selected file as a data URL
+  reader.readAsDataURL(file);
+}
+
+
 
 
 /*slider-image*/

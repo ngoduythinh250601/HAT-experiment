@@ -173,6 +173,9 @@ uploadBtn.addEventListener("click", e => {
             console.log(blob);
             displaySRImage(blob);
             blobFile = blob;
+            downloadBtn.disabled = false;
+            downloadBtn.style.color = ''; // Set the color to default
+            downloadBtn.style.backgroundColor = ''; // Set the background color to default
         })
         .catch(error => {
             console.error('Fetch error:', error);
