@@ -42,7 +42,7 @@
         <div class="container px-4 py-5">
             <h2 class="pb-2 border-bottom">HAT-S experiment on DIV2K dataset</h2>
             <div class="row d-flex">
-                <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+                <div class="row row-cols-1 row-cols-md-2 align-items-md-center py-5">
                     <div class="col d-flex flex-column align-items-start gap-2">
                         <h2 class="fw-bold text-body-emphasis">Compare the results of 3 experiments on the HAT-S model
                         </h2>
@@ -108,41 +108,420 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Firstname</th>
-                                <th>Lastname</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
-                            </tr>
-                            <tr>
-                                <td>Mary</td>
-                                <td>Moe</td>
-                                <td>mary@example.com</td>
-                            </tr>
-                            <tr>
-                                <td>July</td>
-                                <td>Dooley</td>
-                                <td>july@example.com</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            </div>
+            <div>
+                <h2 class="fw-bold text-body-emphasis pt-5">Datasets</h2>
+                <table class="table table-responsive caption-top">
+                    <caption class="text-body-secondary">
+                        Some typical images of the datasets
+                    </caption>
+                    <thead class="text-center">
+                        <tr>
+                            <th>DIV2K</th>
+                            <th>Set5</th>
+                            <th>Set14</th>
+                            <th>BSD100</th>
+                            <th>Manga109</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="width: 224px; height: 200px;">
+                                    <div id="carouselDIV2K" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#carouselDIV2K" data-bs-slide-to="0"
+                                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                                            <button type="button" data-bs-target="#carouselDIV2K" data-bs-slide-to="1"
+                                                class="" aria-label="Slide 2"></button>
+                                            <button type="button" data-bs-target="#carouselDIV2K" data-bs-slide-to="2"
+                                                class="" aria-label="Slide 3"></button>
+                                            <button type="button" data-bs-target="#carouselDIV2K" data-bs-slide-to="3"
+                                                class="" aria-label="Slide 4"></button>
+                                            <button type="button" data-bs-target="#carouselDIV2K" data-bs-slide-to="4"
+                                                class="" aria-label="Slide 5"></button>
+                                        </div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/DIV2K/0001.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/DIV2K/0036.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/DIV2K/0407.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/DIV2K/0275.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/DIV2K/0134.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselDIV2K" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselDIV2K" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 224px; height: 200px;">
+                                    <div id="carouselSet5" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#carouselSet5" data-bs-slide-to="0"
+                                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                <button type="button" data-bs-target="#carouselSet5" data-bs-slide-to="1"
+                                                class="" aria-label="Slide 2"></button>
+                                                <button type="button" data-bs-target="#carouselSet5" data-bs-slide-to="2"
+                                                class="" aria-label="Slide 3"></button>
+                                                <button type="button" data-bs-target="#carouselSet5" data-bs-slide-to="3"
+                                                class="" aria-label="Slide 4"></button>
+                                                <button type="button" data-bs-target="#carouselSet5" data-bs-slide-to="4"
+                                                class="" aria-label="Slide 5"></button>
+                                        </div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Set5/baby.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Set5/bird.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Set5/butterfly.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Set5/head.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Set5/woman.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselSet5" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselSet5" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 224px; height: 200px;">
+                                    <div id="carouselSet14" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#carouselSet14" data-bs-slide-to="0"
+                                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                <button type="button" data-bs-target="#carouselSet14" data-bs-slide-to="1"
+                                                class="" aria-label="Slide 2"></button>
+                                                <button type="button" data-bs-target="#carouselSet14" data-bs-slide-to="2"
+                                                class="" aria-label="Slide 3"></button>
+                                                <button type="button" data-bs-target="#carouselSet14" data-bs-slide-to="3"
+                                                class="" aria-label="Slide 4"></button>
+                                                <button type="button" data-bs-target="#carouselSet14" data-bs-slide-to="4"
+                                                class="" aria-label="Slide 5"></button>
+                                        </div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Set14/baboon.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Set14/comic.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Set14/foreman.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Set14/lenna.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Set14/zebra.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselSet14" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselSet14" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 224px; height: 200px;">
+                                    <div id="carouselBSD100" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#carouselBSD100" data-bs-slide-to="0"
+                                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                <button type="button" data-bs-target="#carouselBSD100" data-bs-slide-to="1"
+                                                class="" aria-label="Slide 2"></button>
+                                                <button type="button" data-bs-target="#carouselBSD100" data-bs-slide-to="2"
+                                                class="" aria-label="Slide 3"></button>
+                                                <button type="button" data-bs-target="#carouselBSD100" data-bs-slide-to="3"
+                                                class="" aria-label="Slide 4"></button>
+                                                <button type="button" data-bs-target="#carouselBSD100" data-bs-slide-to="4"
+                                                class="" aria-label="Slide 5"></button>
+                                        </div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/BSD100/12084.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/BSD100/126007.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/BSD100/3096.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/BSD100/38092.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/BSD100/65033.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselBSD100" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselBSD100" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 224px; height: 200px;">
+                                    <div id="carouselManga109" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#carouselManga109"
+                                                data-bs-slide-to="0" class="active" aria-current="true"
+                                                aria-label="Slide 1"></button>
+                                                <button type="button" data-bs-target="#carouselManga109"
+                                                data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+                                                <button type="button" data-bs-target="#carouselManga109"
+                                                data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+                                                <button type="button" data-bs-target="#carouselManga109"
+                                                data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+                                                <button type="button" data-bs-target="#carouselManga109"
+                                                data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+                                        </div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Manga109/AisazuNihaIrarenai.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Manga109/HarukaRefrain.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Manga109/PikaruGenkiDesu.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Manga109/TouyouKidan.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="card card-cover"
+                                                    style="background-image: url('./images/Manga109/UltraEleven.png'); height: 200px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselManga109" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselManga109" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 class="fw-bold text-body-emphasis pt-5">Results</h2>
+                <table class="table table-hover table-bordered table-responsive">
+                    <thead class="table-success text-center">
+                        <tr>
+                            <th class="table" colspan="2">Upscale x4</th>
+                            <th>Set5</th>
+                            <th>Set14</th>
+                            <th>BSD100</th>
+                            <th>Manga109</th>
+                        </tr>
+                        <tr>
+                            <th>Model name</th>
+                            <th>Data training</th>
+                            <th class="text-center">PSNR/SSIM</th>
+                            <th class="text-center">PSNR/SSIM</th>
+                            <th class="text-center">PSNR/SSIM</th>
+                            <th class="text-center">PSNR/SSIM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HAT-S original</td>
+                            <td>DIV2K</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                        </tr>
+                        <tr>
+                            <td>HAT-S applies Patch-Mosaic</td>
+                            <td>DIV2K-Patch-Mosaic</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                        </tr>
+                        <tr>
+                            <td>HAT-S applies Perceptual Loss</td>
+                            <td>DIV2K</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                        </tr>
+                        <tr>
+                            <td>HAT-S applies MixLosses Loss</td>
+                            <td>DIV2K</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-hover table-bordered table-responsive">
+                    <thead class="table-success text-center">
+                        <tr>
+                            <th class="table" colspan="2">Upscale x8</th>
+                            <th>Set5</th>
+                            <th>Set14</th>
+                            <th>BSD100</th>
+                            <th>Manga109</th>
+                        </tr>
+                        <tr>
+                            <th>Model name</th>
+                            <th>Data training</th>
+                            <th class="text-center">PSNR/SSIM</th>
+                            <th class="text-center">PSNR/SSIM</th>
+                            <th class="text-center">PSNR/SSIM</th>
+                            <th class="text-center">PSNR/SSIM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HAT-S original</td>
+                            <td>DIV2K</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                        </tr>
+                        <tr>
+                            <td>HAT-S applies Patch-Mosaic</td>
+                            <td>DIV2K-Patch-Mosaic</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                        </tr>
+                        <tr>
+                            <td>HAT-S applies Perceptual Loss</td>
+                            <td>DIV2K</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                        </tr>
+                        <tr>
+                            <td>HAT-S applies MixLosses Loss</td>
+                            <td>DIV2K</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                            <td>1234/5678</td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
 
         </div>
+
         <div class="container px-4 py-5">
             <h2 class="pb-2 border-bottom">HAT-S experiment on custom dataset</h2>
 
-            <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+            <div class="row row-cols-1 row-cols-md-2 align-items-md-center py-5">
                 <div class="col d-flex flex-column align-items-start gap-2">
                     <h2 class="fw-bold text-body-emphasis">Left-aligned title explaining these awesome features</h2>
                     <p class="text-body-secondary">Paragraph of text beneath the heading to explain the heading. We'll
@@ -155,7 +534,7 @@
                     <div class="row row-cols-1 row-cols-sm-2 g-4">
                         <div class="col d-flex flex-column gap-2">
                             <div
-                                class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                                class="feature-icon-small bg-secondary d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
                                 <svg class="bi" width="1em" height="1em">
                                     <use xlink:href="#collection"></use>
                                 </svg>
