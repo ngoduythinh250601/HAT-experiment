@@ -31,4 +31,10 @@ if __name__ == "__main__":
     #                       max_width=2048, 
     #                       max_height=2048)
 
+    filter_images_by_size(checking_dir="E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape\GTmod8", 
+                          dependent_dirs=[], 
+                          max_width=3000, 
+                          max_height=3000)
+
+
     pass
