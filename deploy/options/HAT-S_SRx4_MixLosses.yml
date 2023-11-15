@@ -27,5 +27,5 @@ network_g:
 
 # path
 path:
-  pretrain_network_g: E:\HAT-main\deploy\pretrained_models\HAT-S_SRx4_MixLosses.pth
+  pretrain_network_g: pretrained_models\HAT-S_SRx4_MixLosses.pth
   strict_load_g: false
