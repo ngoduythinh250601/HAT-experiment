@@ -37,11 +37,18 @@ if __name__ == "__main__":
     #                image_LR_dir = "e:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_test_LR\LRbicx8", 
     #                scale=8)
     
-    gen_LR_bicubic(image_HR_dir = "e:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_train_HR\GTmod8", 
-                   image_LR_dir = "e:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_train_LR\LRbicx4", 
-                   scale=4)
-    gen_LR_bicubic(image_HR_dir = "e:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_test_HR\GTmod8", 
-                   image_LR_dir = "e:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_test_LR\LRbicx4", 
-                   scale=4)
+    # gen_LR_bicubic(image_HR_dir = "e:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_train_HR\GTmod8", 
+    #                image_LR_dir = "e:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_train_LR\LRbicx4", 
+    #                scale=4)
+    # gen_LR_bicubic(image_HR_dir = "e:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_test_HR\GTmod8", 
+    #                image_LR_dir = "e:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_test_LR\LRbicx4", 
+    #                scale=4)
+
+    # gen_LR_bicubic(image_HR_dir="e:\Coding\Python\Learning\AIP490\HAT\datasets\BSD100\GTmod8", 
+    #               image_LR_dir="e:\Coding\Python\Learning\AIP490\HAT\datasets\BSD100\LRbicx4", 
+    #               scale = 4)
+    # gen_LR_bicubic(image_HR_dir="e:\Coding\Python\Learning\AIP490\HAT\datasets\Manga109\GTmod8", 
+    #               image_LR_dir="e:\Coding\Python\Learning\AIP490\HAT\datasets\Manga109\LRbicx4", 
+    #               scale = 4)
     
     pass
