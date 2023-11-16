@@ -1,5 +1,5 @@
 // ----- init state -------
-const host_name = "http://127.0.0.1:5000";
+const host_name = " https://8f13-42-118-228-189.ngrok-free.app/";
 
 const listGroupCheckableUpscalesX4 = document.getElementById("listGroupCheckableUpscales1");
 const listGroupCheckableUpscalesX8 = document.getElementById("listGroupCheckableUpscales2");
@@ -49,6 +49,7 @@ function changeModel(spinnerOption) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            "ngrok-skip-browser-warning": "69420",
         },
         body: JSON.stringify({ "modelName": ymlFileName }),
     };
@@ -165,6 +166,9 @@ uploadBtn.addEventListener("click", e => {
     formData.append("image", imageFile.files[0]);
     var requestOptions = {
         method: 'POST',
+        headers: new Headers({
+            "ngrok-skip-browser-warning": "69420",
+        }),
         body: formData,
     };
     fetch(host_name + '/upload', requestOptions)
