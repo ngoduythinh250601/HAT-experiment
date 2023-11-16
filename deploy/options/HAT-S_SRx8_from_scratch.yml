@@ -28,5 +28,5 @@ network_g:
 
 # path
 path:
-  pretrain_network_g: pretrained_models\HAT-S_SRx8_from_scratch.pth
+  pretrain_network_g: pretrained_models/HAT-S_SRx8_from_scratch.pth
   strict_load_g: false
