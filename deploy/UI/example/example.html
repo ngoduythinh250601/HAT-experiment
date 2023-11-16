@@ -30,12 +30,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <script src='https://get.mavo.io/mavo.js'></script>
 
+    <!-- Thêm thư viện JSZip -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+    <!-- Thêm thư viện FileSaver.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 </head>
+<script>
+function downloadImages(imageSrcArray) {
+            // Create an array of promises for each image download
+            var promises = imageSrcArray.map(function (imageSrc) {
+                return fetch(imageSrc)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        // Create a temporary link element
+                        var link = document.createElement('a');
+
+                        // Set the href attribute of the link to the blob data
+                        link.href = window.URL.createObjectURL(blob);
+
+                        // Set the download attribute with the desired file name (extracted from the URL)
+                        link.download = imageSrc.substring(imageSrc.lastIndexOf('/') + 1);
+
+                        // Append the link to the document
+                        document.body.appendChild(link);
+
+                        // Trigger a click event on the link to start the download
+                        link.click();
+
+                        // Remove the link from the document
+                        document.body.removeChild(link);
+                    });
+            });
+
+            // Use Promise.all to wait for all promises to resolve
+            Promise.all(promises)
+                .then(() => {
+                    console.log('All images downloaded successfully.');
+                })
+                .catch(error => {
+                    console.error('Error downloading images:', error);
+                });
+        }
+</script>
 
 <body style="background-color: white; font-family: Open Sans, sans-serif;">
-    <p class="display-1"
-        style="margin-bottom: 5%; color:  var(--bs-success); font-weight:bold;font-family: Open Sans, sans-serif;">
-        Example</p>
 
     <nav class="navbar navbar-expand-md border-bottom fixed-top bg-light fw-medium">
         <div class="container-fluid">
@@ -59,173 +98,190 @@
             </div>
         </div>
     </nav>
-
-    <p class="display-3 text-center">Example photo of an enhanced image solution using an x4 scale</p>
-    <div class="row mb-3 text-center">
-        <div class="col-md-6 themed-grid-col">
-            <p class="h3">HAT-S | Upscale X4</p>
-            <div class="block  block--comparison" mv-app="slider" storage="local" mv-mode="edit">
-                <div class="block__image" style="--range: [slide]%;">
-                    <!-- Background Image -->
-                    <div class="block__img  block__img--first">
-                        <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" class="img-cover">
+    <br>
+    <br>
+    <div class="container px-4 py-5">
+        <h2 class="pb-2 fw-bold border-bottom">Example photo of an enhanced image solution using an x4 scale</h2>
+        <br>
+        <div class="row mb-3 text-center">
+            <div class="col-md-6 themed-grid-col">
+                <p class="h3">HAT-S | Upscale X4</p>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="./slidder_image/butterfly_250000_X4_from_scratch.png" class="img-cover"
+                                id="butterfly_250000_X4_PerceptualLoss">
+                        </div>
+    
+                        <div class="block__img block__img--last">
+                            <img src="./slidder_image/butterfly_LR.png" class="img-cover" id="butterfly_LR">
+                        </div>
+    
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <!-- Foreground Image -->
-                    <div class="block__img  block__img--last">
-                        <img src="/HAT-experiment/deploy/UI/example/slidder_image/butterfly_LR.png" class="img-cover">
-                    </div>
-
-                    <!-- Slider -->
-                    <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50" property="slide">
+                </div>
+                <div class="container-sm themed-container text-end">
+                    <button type="button" class="btn btn-success" onclick="downloadImages(['./slidder_image/butterfly_250000_X4_from_scratch.png', './slidder_image/butterfly_LR.png'])">Download</button>
                 </div>
             </div>
-            <div class="container-sm themed-container text-end" ><button type="button" class="btn btn-success" id="download_example" 
-                data-image-url1="./slidder_image/butterfly_250000_X4_PerceptualLoss.png"
-                data-image-url2="/HAT-experiment/deploy/UI/example/slidder_image/butterfly_LR.png"
-                >Download</button></div>    
-        </div>
-        <div class="col-md-6 themed-grid-col">
-            <p class="h3">HAT-S with Patch-Mosaic | Upscale X4</p>
-            <div class="block  block--comparison" mv-app="slider" storage="local" mv-mode="edit">
-                <div class="block__image" style="--range: [slide]%;">
-                    <!-- Background Image -->
-                    <div class="block__img  block__img--first">
-                        <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" class="img-cover">
+            <div class="col-md-6 themed-grid-col">
+                <p class="h3">HAT-S | Upscale X4 Mixlosses</p>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="./slidder_image/butterfly_250000_X4_MixLosses.png" class="img-cover"
+                                id="butterfly_250000_X4_Patch-Mosaic">
+                        </div>
+    
+                        <div class="block__img block__img--last">
+                            <img src="./slidder_image/butterfly_LR.png" class="img-cover" id="butterfly_LR">
+                        </div>
+    
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <!-- Foreground Image -->
-                    <div class="block__img  block__img--last">
-                        <img src="/HAT-experiment/deploy/UI/example/slidder_image/butterfly_LR.png" class="img-cover">
-                    </div>
-
-                    <!-- Slider -->
-                    <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50" property="slide">
                 </div>
-            </div>
-            <div class="container-sm themed-container text-end" ><button type="button" class="btn btn-success" id="download">Download</button></div>
-        </div>
-    </div>
-    <div class="b-example-divider" style="background-color: white;"></div>
-    <div class="row mb-3 text-center">
-        <div class="col-md-6 themed-grid-col">
-            <p class="h3">HAT-S uses Perceptual Loss | Upscale X4</p>
-            <div class="block  block--comparison" mv-app="slider" storage="local" mv-mode="edit">
-                <div class="block__image" style="--range: [slide]%;">
-                    <!-- Background Image -->
-                    <div class="block__img  block__img--first">
-                        <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" class="img-cover">
-                    </div>
-
-                    <!-- Foreground Image -->
-                    <div class="block__img  block__img--last">
-                        <img src="/HAT-experiment/deploy/UI/example/slidder_image/butterfly_LR.png" class="img-cover">
-                    </div>
-
-                    <!-- Slider -->
-                    <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50" property="slide">
+                <div class="container-sm themed-container text-end">
+                    <button type="button" class="btn btn-success" onclick="downloadImages(['./slidder_image/butterfly_250000_X4_MixLosses.png', './slidder_image/butterfly_LR.png'])">Download</button>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 themed-grid-col">
-            <p class="h3">HAT-S uses MixLosses Loss | Upscale X4</p>
-            <div class="block  block--comparison" mv-app="slider" storage="local" mv-mode="edit">
-                <div class="block__image" style="--range: [slide]%;">
-                    <!-- Background Image -->
-                    <div class="block__img  block__img--first">
-                        <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" class="img-cover">
+        <div class="b-example-divider" style="background-color: white;"></div>
+        <div class="row mb-3 text-center">
+            <div class="col-md-6 themed-grid-col">
+                <p class="h3">HAT-S | Upscale X4 with PerceptualLoss</p>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" class="img-cover"
+                                id="butterfly_250000_X4_PerceptualLoss">
+                        </div>
+    
+                        <div class="block__img block__img--last">
+                            <img src="./slidder_image/butterfly_LR.png" class="img-cover" id="butterfly_LR">
+                        </div>
+    
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <!-- Foreground Image -->
-                    <div class="block__img  block__img--last">
-                        <img src="/HAT-experiment/deploy/UI/example/slidder_image/butterfly_LR.png" class="img-cover">
+                </div>
+                <div class="container-sm themed-container text-end">
+                    <button type="button" class="btn btn-success" onclick="downloadImages(['./slidder_image/butterfly_250000_X4_PerceptualLoss.png', './slidder_image/butterfly_LR.png'])">Download</button>
+                </div>
+            </div>
+            <div class="col-md-6 themed-grid-col">
+                <p class="h3">HAT-S | Upscale X4 with Patch-Mosaic</p>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="./slidder_image/butterfly_250000_X4_Patch-Mosaic.png" class="img-cover"
+                                id="butterfly_250000_X4_Patch-Mosaic">
+                        </div>
+    
+                        <div class="block__img block__img--last">
+                            <img src="./slidder_image/butterfly_LR.png" class="img-cover" id="butterfly_LR">
+                        </div>
+    
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <!-- Slider -->
-                    <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50" property="slide">
+                </div>
+                <div class="container-sm themed-container text-end">
+                    <button type="button" class="btn btn-success" onclick="downloadImages(['./slidder_image/butterfly_250000_X4_Patch-Mosaic.png', './slidder_image/butterfly_LR.png'])">Download</button>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="b-example-divider" style="background-color: white;"></div>
-    <p class="display-3 text-center">Example photo of an enhanced image solution using an x8 scale</p>
-    <div class="row mb-3 text-center">
-        <div class="col-md-6 themed-grid-col">
-            <p class="h3">HAT-S | Upscale X8</p>
-            <div class="block  block--comparison" mv-app="slider" storage="local" mv-mode="edit">
-                <div class="block__image" style="--range: [slide]%;">
-                    <!-- Background Image -->
-                    <div class="block__img  block__img--first">
-                        <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" class="img-cover">
+        <br>
+        <br>
+        <h2 class="pb-2 fw-bold border-bottom">Example photo of an enhanced image solution using an x4 scale</h2>
+        <br>
+        <div class="row mb-3 text-center">
+            <div class="col-md-6 themed-grid-col">
+                <p class="h3">HAT-S | Upscale X8</p>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" class="img-cover"
+                                id="butterfly_250000_X4_PerceptualLoss">
+                        </div>
+    
+                        <div class="block__img block__img--last">
+                            <img src="./slidder_image/butterfly_LR.png" class="img-cover" id="butterfly_LR">
+                        </div>
+    
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <!-- Foreground Image -->
-                    <div class="block__img  block__img--last">
-                        <img src="/HAT-experiment/deploy/UI/example/slidder_image/butterfly_LR.png" class="img-cover">
+                </div>
+                <div class="container-sm themed-container text-end">
+                    <button type="button" class="btn btn-success" onclick="downloadImages(['./slidder_image/butterfly_250000_X4_PerceptualLoss.png', './slidder_image/butterfly_LR.png'])">Download</button>
+                </div>
+            </div>
+            <div class="col-md-6 themed-grid-col">
+                <p class="h3">HAT-S | Upscale X4 with Patch-Mosaic</p>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="./slidder_image/butterfly_250000_X4_Patch-Mosaic.png" class="img-cover"
+                                id="butterfly_250000_X4_Patch-Mosaic">
+                        </div>
+    
+                        <div class="block__img block__img--last">
+                            <img src="./slidder_image/butterfly_LR.png" class="img-cover" id="butterfly_LR">
+                        </div>
+    
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <!-- Slider -->
-                    <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50" property="slide">
+                </div>
+                <div class="container-sm themed-container text-end">
+                    <button type="button" class="btn btn-success" onclick="downloadImages(['./slidder_image/butterfly_250000_X4_Patch-Mosaic.png', './slidder_image/butterfly_LR.png'])">Download</button>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 themed-grid-col">
-            <p class="h3">HAT-S with Patch-Mosaic | Upscale X8</p>
-            <div class="block  block--comparison" mv-app="slider" storage="local" mv-mode="edit">
-                <div class="block__image" style="--range: [slide]%;">
-                    <!-- Background Image -->
-                    <div class="block__img  block__img--first">
-                        <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" class="img-cover">
+        <div class="b-example-divider" style="background-color: white;"></div>
+        <div class="row mb-3 text-center">
+            <div class="col-md-6 themed-grid-col">
+                <p class="h3">HAT-S | Upscale X4 PerceptualLoss</p>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" class="img-cover"
+                                id="butterfly_250000_X4_PerceptualLoss">
+                        </div>
+    
+                        <div class="block__img block__img--last">
+                            <img src="./slidder_image/butterfly_LR.png" class="img-cover" id="butterfly_LR">
+                        </div>
+    
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <!-- Foreground Image -->
-                    <div class="block__img  block__img--last">
-                        <img src="/HAT-experiment/deploy/UI/example/slidder_image/butterfly_LR.png" class="img-cover">
-                    </div>
-
-                    <!-- Slider -->
-                    <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50" property="slide">
+                </div>
+                <div class="container-sm themed-container text-end">
+                    <button type="button" class="btn btn-success" onclick="downloadImages(['./slidder_image/butterfly_250000_X4_PerceptualLoss.png', './slidder_image/butterfly_LR.png'])">Download</button>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="b-example-divider" style="background-color: white;"></div>
-    <div class="row mb-3 text-center">
-        <div class="col-md-6 themed-grid-col">
-            <p class="h3">HAT-S uses Perceptual Loss | Upscale X8</p>
-            <div class="block  block--comparison" mv-app="slider" storage="local" mv-mode="edit">
-                <div class="block__image" style="--range: [slide]%;">
-                    <!-- Background Image -->
-                    <div class="block__img  block__img--first">
-                        <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" class="img-cover">
+            <div class="col-md-6 themed-grid-col">
+                <p class="h3">HAT-S | Upscale X4 with Mixlosses</p>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="./slidder_image/butterfly_250000_X4_Patch-Mosaic.png" class="img-cover"
+                                id="butterfly_250000_X4_Patch-Mosaic">
+                        </div>
+    
+                        <div class="block__img block__img--last">
+                            <img src="./slidder_image/butterfly_LR.png" class="img-cover" id="butterfly_LR">
+                        </div>
+    
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <!-- Foreground Image -->
-                    <div class="block__img  block__img--last">
-                        <img src="/HAT-experiment/deploy/UI/example/slidder_image/butterfly_LR.png" class="img-cover">
-                    </div>
-
-                    <!-- Slider -->
-                    <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50" property="slide">
                 </div>
-            </div>
-        </div>
-        <div class="col-md-6 themed-grid-col">
-            <p class="h3">HAT-S uses Perceptual Loss | Upscale X8</p>
-            <div class="block  block--comparison" mv-app="slider" storage="local" mv-mode="edit">
-                <div class="block__image" style="--range: [slide]%;">
-                    <!-- Background Image -->
-                    <div class="block__img  block__img--first">
-                        <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" class="img-cover">
-                    </div>
-
-                    <!-- Foreground Image -->
-                    <div class="block__img  block__img--last">
-                        <img src="/HAT-experiment/deploy/UI/example/slidder_image/butterfly_LR.png" class="img-cover">
-                    </div>
-
-                    <!-- Slider -->
-                    <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50" property="slide">
+                <div class="container-sm themed-container text-end">
+                    <button type="button" class="btn btn-success" onclick="downloadImages(['./slidder_image/butterfly_250000_X4_Patch-Mosaic.png', './slidder_image/butterfly_LR.png'])">Download</button>
                 </div>
             </div>
         </div>

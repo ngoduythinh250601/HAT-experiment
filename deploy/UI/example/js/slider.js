@@ -1,27 +1,40 @@
-document.getElementById('download_example').addEventListener('click', function () {
-    var imageUrl1 = this.getAttribute('data-image-url1');
-    var imageUrl2 = this.getAttribute('data-image-url2');
-    
-    alert("Image URL 1: " + imageUrl1);
-    alert("Image URL 2: " + imageUrl2);
-    
-    downloadImages(imageUrl1, imageUrl2);
-});
+function downloadImages() {
+    // Array of image IDs
+    var imageIds = ['downloadImage1', 'downloadImage2']; // Add more IDs as needed
 
-function downloadImages(imageUrl1, imageUrl2) {
-    alert("Downloading images...");
-    
-    var a1 = document.createElement('a');
-    a1.href = imageUrl1;
-    a1.download = 'image1.png';
-    document.body.appendChild(a1);
-    a1.click();
-    document.body.removeChild(a1);
+    // Loop through each image
+    imageIds.forEach(function (id) {
+        // Get the image element
+        var image = document.getElementById(id);
 
-    var a2 = document.createElement('a');
-    a2.href = imageUrl2;
-    a2.download = 'image2.png';
-    document.body.appendChild(a2);
-    a2.click();
-    document.body.removeChild(a2);
+        // Create a canvas element
+        var canvas = document.createElement('canvas');
+        canvas.width = image.width;
+        canvas.height = image.height;
+
+        // Draw the image on the canvas
+        var context = canvas.getContext('2d');
+        context.drawImage(image, 0, 0);
+
+        // Convert the canvas content to a data URL
+        var dataUrl = canvas.toDataURL('image/png');
+
+        // Create a temporary link element
+        var link = document.createElement('a');
+
+        // Set the href attribute of the link to the data URL
+        link.href = dataUrl;
+
+        // Set the download attribute with the desired file name
+        link.download = 'downloaded_image_' + id + '.png';
+
+        // Append the link to the document
+        document.body.appendChild(link);
+
+        // Trigger a click event on the link to start the download
+        link.click();
+
+        // Remove the link from the document
+        document.body.removeChild(link);
+    });
 }

@@ -9,8 +9,8 @@ img {
     overflow: hidden;
     margin: 0 auto;
     position: relative;
-    width: 55%; /* Adjust the container width as needed */
-    min-height: 50vh; /* Adjust the container height as needed */
+    width: 90%; /* Adjust the container width as needed */
+    min-height: 55vh; /* Adjust the container height as needed */
 }
 
 .block--comparison .block__image {

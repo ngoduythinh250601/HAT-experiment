@@ -18,6 +18,8 @@ var scale = "SRx4";
 var modelName = 'HAT-S_from_scratch';
 var ymlFileName = 'HAT-S_SRx4_from_scratch';
 var blobFile;
+let startTime;
+let endTime;
 
 const dict_modelName = {
     "HAT-S_from_scratch": 'HAT-S',
@@ -160,6 +162,8 @@ function displaySRImage(file) {
 
 uploadBtn.addEventListener("click", e => {
     e.preventDefault();
+    // Ghi lại thời điểm bắt đầu
+    startTime = new Date();
 
     const formData = new FormData();
     console.log(imageFile.files[0]);
@@ -177,6 +181,12 @@ uploadBtn.addEventListener("click", e => {
             console.log(blob);
             displaySRImage(blob);
             blobFile = blob;
+
+            // Ghi lại thời điểm kết thúc
+            endTime = new Date();
+
+            // Tính thời gian chênh lệch và hiển thị vào div
+            displayProcessingTime();
             downloadBtn.disabled = false;
             downloadBtn.style.color = ''; // Set the color to default
             downloadBtn.style.backgroundColor = ''; // Set the background color to default
@@ -210,3 +220,15 @@ downloadBtn.addEventListener("click", e => {
     document.body.removeChild(anchor);
     URL.revokeObjectURL(url);
 });
+
+function displayProcessingTime() {
+    // Tính thời gian chênh lệch
+    const processingTime = endTime - startTime;
+
+    // Chuyển đổi thời gian thành giây (hoặc một đơn vị thời gian khác nếu cần)
+    const processingTimeInSeconds = processingTime / 1000;
+
+    // Hiển thị thời gian vào div
+    const processingTimeDiv = document.getElementById('processingTime');
+    processingTimeDiv.innerHTML = `Processing Time: ${processingTimeInSeconds.toFixed(2)} seconds`;
+}
