@@ -31,9 +31,12 @@ def ordered_yaml():
     return Loader, Dumper
 
 class Model:
-    def __init__(self, yml_dir):
+    def __init__(self, cwd, yml_dir):
+        self.cwd = cwd
+        self.yml_dir = yml_dir
         with open(osp.abspath(yml_dir), mode='r') as f:
             self.opt = yaml.load(f, Loader=ordered_yaml()[0])
+        self.opt['path']['pretrain_network_g'] = osp.join(self.cwd, self.opt['path']['pretrain_network_g'])
         self.load()
 
     def load(self):

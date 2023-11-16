@@ -31,6 +31,14 @@ def gen_GT_and_LR(image_HR_dir, saved_HR_dir, saved_LR_dir, scale):
         print(image_name, "LR has been saved! Image size: ", LR_image.size)
 
 if __name__ == "__main__": 
+    # gen_GT_and_LR(image_HR_dir="e:\Coding\Python\Learning\AIP490\HAT\datasets\BSD100\original", 
+    #               saved_HR_dir="e:\Coding\Python\Learning\AIP490\HAT\datasets\BSD100\GTmod8", 
+    #               saved_LR_dir="e:\Coding\Python\Learning\AIP490\HAT\datasets\BSD100\LRbicx8", 
+    #               scale = 8)
+    # gen_GT_and_LR(image_HR_dir="e:\Coding\Python\Learning\AIP490\HAT\datasets\Manga109\original", 
+    #               saved_HR_dir="e:\Coding\Python\Learning\AIP490\HAT\datasets\Manga109\GTmod8", 
+    #               saved_LR_dir="e:\Coding\Python\Learning\AIP490\HAT\datasets\Manga109\LRbicx8", 
+    #               scale = 8)
     # gen_GT_and_LR(image_HR_dir="E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_train_HR/train", 
     #               saved_HR_dir="E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_train_HR/GTmod8", 
     #               saved_LR_dir="E:\FPT University\Semester 9\AIP490\Data\Train\Vietnamese_Landscape_train_LR/LRbicx8", 

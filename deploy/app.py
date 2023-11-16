@@ -7,6 +7,7 @@ import os
 from io import BytesIO
 from load_models import Model
 
+
 app  = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -21,6 +22,12 @@ class Info:
         
     def set_Models_dir(self, models_dir):
         self.models_dir = models_dir
+
+
+@app.route('/')
+def hello():
+   return 'All is well if you see this line!'
+
 
 @app.route("/change_model", methods=["POST"])
 def change_model():
@@ -37,7 +44,7 @@ def change_model():
             try:
                 for file_name in os.listdir(info.models_dir):
                     if model_name in file_name:
-                        model = Model(os.path.join(info.models_dir, file_name))
+                        model = Model(cwd, os.path.join(info.models_dir, file_name))
                         print("Model has been changed:", model.model.opt['name'])
                         ans["status"] = "success"
                         ans["msg"] = "model had changed: " + model_name + ".yml"
@@ -89,7 +96,8 @@ def upload():
 
 
 if __name__ == "__main__":
-    info = Info(models_dir="E:\Github\HAT-experiment\deploy\options", default_model_name="HAT-S_SRx4_Patch-Mosaic")
-    model = Model(os.path.join(info.models_dir, info.default_model_name + '.yml'))
+    cwd = os.getcwd()
+    info = Info(models_dir=os.path.join(cwd,"options"), default_model_name="HAT-S_SRx4_from_scratch")
+    model = Model(cwd, os.path.join(info.models_dir, info.default_model_name + '.yml'))
     print("Default model name:", model.model.opt['name'])
-    app.run()
+    app.run(port=5000)
