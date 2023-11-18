@@ -12,16 +12,16 @@
     <link rel="stylesheet" type="text/css" href="./css/navbar-fixed.css">
     <link rel="stylesheet" type="text/css" href="./css/grid.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
-    <link rel="stylesheet" type="text/css" href="./css/slider-image.css">
+    <link rel="stylesheet" type="text/css" href="./css/slider.css">
     <!-- <link rel="stylesheet" type="text/css" href="node_modules/img-slider/distr/imgslider.min.css"> -->
     <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/footers/"> -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"> -->
     <script src="./js/script.js"></script>
     <!-- <script type="text/javascript" src="node_modules/img-slider/distr/imgslider.min.js"></script> -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script> -->
-    <script src='https://s3-us-west-2.amazonaws.com/guruscriptz/image-comparison.js'></script>
+
     <!-- <script src="https://cdn.jsdelivr.net/npm/canvg@1.5.3/dist/browser/canvg.min.js"></script> -->
+    <script src='https://get.mavo.io/mavo.js'></script>
 </head>
 
 <body style="background-color: white; font-family: Open Sans, sans-serif;">
@@ -34,10 +34,10 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active"  aria-current="page" href="#" data-bs-toggle="dropdown"
-                            aria-expanded="false">Demo</a>
+                        <a class="nav-link dropdown-toggle active" aria-current="page" href="#"
+                            data-bs-toggle="dropdown" aria-expanded="false">Demo</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item active"  aria-current="page" href="#">Main task</a></li>
+                            <li><a class="dropdown-item active" aria-current="page" href="#">Main task</a></li>
                             <li><a class="dropdown-item" href="../additional_demo/index.html">Additional task</a></li>
                         </ul>
                     </li>
@@ -66,12 +66,12 @@
             <div class="row mb-3 mx-1 text-center">
                 <div class="col-6 themed-grid-col">
                     <div class="bd-example-snippet bd-code-snippet">
-                        <div class="bd-example m-0 border-0">
+                        <div class="bd-example m-0 border-0" >
                             <figure class="figure">
                                 <svg class="bd-placeholder-img figure-img img-fluid rounded" width="300" height="200"
                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x200"
                                     preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <title>Placeholder</title>
+                                    <title>Low resolution image</title>
                                     <rect width="100%" height="100%" fill="#868e96" id="placeholder-rect"></rect>
                                     <text x="50%" y="50%" fill="#dee2e6" dy=".3em" id="thumbnil">Upload image</text>
                                 </svg>
@@ -85,14 +85,13 @@
                                 id="image-file" onchange="displayImage(this)">
                         </div>
                     </div>
-
                 </div>
-                <div class="col-6 themed-grid-col">
-                    <figure class="figure">
+                <div class="col-6">
+                    <figure class="figure" >
                         <svg class="bd-placeholder-img figure-img img-fluid rounded" width="400" height="300"
                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 400x300"
                             preserveAspectRatio="none" focusable="false">
-                            <title>Placeholder</title>
+                            <title>Super resolution image</title>
                             <rect width="100%" height="100%" fill="#868e96" id="SRImage-rect"></rect>
                             <text style="white-space: pre-wrap" x="50%" y="50%" fill="#dee2e6" dy=".3em"
                                 id="SRImage-text">
@@ -103,19 +102,29 @@
                         </figcaption>
                     </figure>
                 </div>
-            </div>
+            </div>      
             <div class="row mb-3 mx-1 text-center">
                 <div class="col-6 themed-grid-col text-end">
-                    <div class="col d-flex flex-col align-items-center justify-content-between">
+                    <div class="col d-flex flex-col align-items-center justify-content-between ">
                         <p class="card-text" id="modelNameDisplay">Model name: </p>
-                        <button type="button" class="btn btn-success run" id="upload" style="background-color: gray"
+                        <button type="button" class="btn btn-success run" id="upload" style="background-color: gray;border-color: gray"
                             disabled>Run</button>
+
                     </div>
                 </div>
-                <div class="col-6 d-flex flex-col align-items-center justify-content-end themed-grid-col text-end">
-                    <div id="processingTime" style="margin-right: 2%;"></div>
-                    <button type="button" class="btn btn-success download" id="download" style="background-color: gray"
+
+                <div class="col-6 d-flex flex-col align-items-center justify-content-end themed-grid-col text-end ">
+                    <div class="d-flex flex-col align-items-center justify-content-end position-relative ">
+                        <div class="spinner-border text-secondary position-absolute end-0" style="display: none" role="status"
+                            id="waiting_spinner">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div id="waitingstatus" style="margin-right: 2%;"></div>
+                    <div class="time" id="processingTime" style="margin-right: 2%;"></div>
+                    <button type="button" class="btn btn-success download" id="download" style="background-color: gray; border-color: gray;"
                         disabled>Download</button>
+
                 </div>
             </div>
         </div>
@@ -210,115 +219,147 @@
         <div class="row row-cols-1 row-cols-md-4 gx-4 text-center">
             <div class="col themed-grid-col is-visible">
                 HAT-S | Upscale X4
-                <figure class="cd-image-container">
-                    <img src="./slidder_image/butterfly_250000_X4_from_scratch.png" alt="Super Resolution Image">
-                    <span class="cd-image-label" data-type="original">SR</span>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                                class="img-cover">
+                        </div>
 
-                    <div class="cd-resize-img"> <!-- the resizable image on top -->
-                        <img src="./slidder_image/butterfly_LR_resized.png" alt="Low Resolution Image">
-                        <span class="cd-image-label" data-type="modified">LR</span>
+                        <div class="block__img block__img--last">
+                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                        </div>
+
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <span class="cd-handle"></span>
-                </figure>
+                </div>
             </div>
             <div class="col themed-grid-col is-visible">
                 HAT-S with Patch-Mosaic | Upscale X4
-                <figure class="cd-image-container">
-                    <img src="./slidder_image/butterfly_250000_X4_Patch-Mosaic.png" alt="Super Resolution Image">
-                    <span class="cd-image-label" data-type="original">SR</span>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                                class="img-cover">
+                        </div>
 
-                    <div class="cd-resize-img"> <!-- the resizable image on top -->
-                        <img src="./slidder_image/butterfly_LR_resized.png" alt="Low Resolution Image">
-                        <span class="cd-image-label" data-type="modified">LR</span>
+                        <div class="block__img block__img--last">
+                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                        </div>
+
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <span class="cd-handle"></span>
-                </figure>
+                </div>
             </div>
             <div class="col themed-grid-col is-visible">
                 HAT-S uses Perceptual Loss | Upscale X4
-                <figure class="cd-image-container">
-                    <img src="./slidder_image/butterfly_250000_X4_PerceptualLoss.png" alt="Super Resolution Image">
-                    <span class="cd-image-label" data-type="original">SR</span>
+                 <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                                class="img-cover">
+                        </div>
 
-                    <div class="cd-resize-img"> <!-- the resizable image on top -->
-                        <img src="./slidder_image/butterfly_LR_resized.png" alt="Low Resolution Image">
-                        <span class="cd-image-label" data-type="modified">LR</span>
+                        <div class="block__img block__img--last">
+                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                        </div>
+
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <span class="cd-handle"></span>
-                </figure>
+                </div>
             </div>
             <div class="col themed-grid-col is-visible">
                 HAT-S uses MixLosses Loss | Upscale X4
-                <figure class="cd-image-container">
-                    <img src="./slidder_image/butterfly_250000_X4_MixLosses.png" alt="Super Resolution Image">
-                    <span class="cd-image-label" data-type="original">SR</span>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                                class="img-cover">
+                        </div>
 
-                    <div class="cd-resize-img"> <!-- the resizable image on top -->
-                        <img src="./slidder_image/butterfly_LR_resized.png" alt="Low Resolution Image">
-                        <span class="cd-image-label" data-type="modified">LR</span>
+                        <div class="block__img block__img--last">
+                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                        </div>
+
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <span class="cd-handle"></span>
-                </figure>
+                </div>
             </div>
             <div class="col themed-grid-col is-visible">
                 HAT-S | Upscale X8
-                <figure class="cd-image-container">
-                    <img src="./slidder_image/butterfly_250000_X8_from_scratch.png" alt="Super Resolution Image">
-                    <span class="cd-image-label" data-type="original">SR</span>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                                class="img-cover">
+                        </div>
 
-                    <div class="cd-resize-img"> <!-- the resizable image on top -->
-                        <img src="./slidder_image/butterfly_LR_X8.png" alt="Low Resolution Image">
-                        <span class="cd-image-label" data-type="modified">LR</span>
+                        <div class="block__img block__img--last">
+                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                        </div>
+
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <span class="cd-handle"></span>
-                </figure>
+                </div>
             </div>
             <div class="col themed-grid-col is-visible">
                 HAT-S with Patch-Mosaic | Upscale X8
-                <figure class="cd-image-container">
-                    <img src="./slidder_image/butterfly_250000_X8_Patch-Mosaic.png" alt="Super Resolution Image">
-                    <span class="cd-image-label" data-type="original">SR</span>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                                class="img-cover">
+                        </div>
 
-                    <div class="cd-resize-img"> <!-- the resizable image on top -->
-                        <img src="./slidder_image/butterfly_LR_X8.png" alt="Low Resolution Image">
-                        <span class="cd-image-label" data-type="modified">LR</span>
+                        <div class="block__img block__img--last">
+                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                        </div>
+
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <span class="cd-handle"></span>
-                </figure>
+                </div>
             </div>
             <div class="col themed-grid-col is-visible">
                 HAT-S uses Perceptual Loss | Upscale X8
-                <figure class="cd-image-container ">
-                    <img src="./slidder_image/butterfly_250000_X8_PerceptualLoss.png" alt="Super Resolution Image">
-                    <span class="cd-image-label" data-type="original">SR</span>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                                class="img-cover">
+                        </div>
 
-                    <div class="cd-resize-img"> <!-- the resizable image on top -->
-                        <img src="./slidder_image/butterfly_LR_X8.png" alt="Low Resolution Image">
-                        <span class="cd-image-label" data-type="modified">LR</span>
+                        <div class="block__img block__img--last">
+                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                        </div>
+
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <span class="cd-handle"></span>
-                </figure>
+                </div>
             </div>
             <div class="col themed-grid-col">
                 HAT-S uses MixLosses Loss | Upscale X8
-                <figure class="cd-image-container is-visible">
-                    <img src="./slidder_image/butterfly_250000_X8_MixLosses.png" alt="Super Resolution Image">
-                    <span class="cd-image-label" data-type="original">SR</span>
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                    <div class="block__image" style="--range: [slide]%;">
+                        <div class="block__img block__img--first">
+                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                                class="img-cover">
+                        </div>
 
-                    <div class="cd-resize-img"> <!-- the resizable image on top -->
-                        <img src="./slidder_image/butterfly_LR_X8.png" alt="Low Resolution Image">
-                        <span class="cd-image-label" data-type="modified">LR</span>
+                        <div class="block__img block__img--last">
+                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                        </div>
+
+                        <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
+                            property="slide">
                     </div>
-
-                    <span class="cd-handle"></span>
-                </figure>
+                </div>
             </div>
         </div>
     </div>

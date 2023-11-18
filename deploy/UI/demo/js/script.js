@@ -48,6 +48,7 @@ function displayImage(input) {
 
       runButton.disabled = false;
       runButton.style.backgroundColor = ''; // Set the background color to default
+      runButton.style.borderColor='';
 
   };
 
@@ -176,6 +177,12 @@ jQuery(document).ready(function($){
       }
   }
 });
+
+
+/* display full-image */
+    
+
+
 
 
 
