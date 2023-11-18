@@ -117,6 +117,13 @@ listGroupCheckablePerceptualLossModel.addEventListener('change', updateModelName
 listGroupCheckableMixLossesModel.addEventListener('change', updateModelName);
 
 
+
+// Sample usage after processing
+// Replace this with your actual processing logic
+setTimeout(function () {
+    var resultBlob = new Blob(); // Replace this with your actual processed result blob
+    displayProcessedResult(resultBlob);
+}, 5000); // Simulating a delay before displaying the result
 function displaySRImage(file) {
     var rect = document.getElementById('SRImage-rect');
     var text = document.getElementById('SRImage-text');
@@ -154,6 +161,7 @@ function displaySRImage(file) {
         // Append the image to the pattern, and the pattern to the SVG
         pattern.appendChild(image);
         rect.parentNode.appendChild(pattern);
+
     };
 
     // Read the selected file as a data URL
@@ -161,6 +169,9 @@ function displaySRImage(file) {
 }
 
 uploadBtn.addEventListener("click", e => {
+    // Hiển thị biểu tượng quay khi bắt đầu xử lý
+    hideProcessingTime();
+    showSpinner('waiting_spinner');
     e.preventDefault();
     // Ghi lại thời điểm bắt đầu
     startTime = new Date();
@@ -175,26 +186,44 @@ uploadBtn.addEventListener("click", e => {
         }),
         body: formData,
     };
+    displayWaitingStatus();
     fetch(host_name + '/upload', requestOptions)
         .then(response => response.blob())
         .then(blob => {
             console.log(blob);
             displaySRImage(blob);
             blobFile = blob;
-
             // Ghi lại thời điểm kết thúc
             endTime = new Date();
-
+            // Ẩn biểu tượng quay khi xử lý hoàn tất
+            hideSpinner('waiting_spinner');
             // Tính thời gian chênh lệch và hiển thị vào div
+            hideWaitingStatus();
             displayProcessingTime();
             downloadBtn.disabled = false;
+            downloadBtn.style.borderColor = '';
             downloadBtn.style.color = ''; // Set the color to default
             downloadBtn.style.backgroundColor = ''; // Set the background color to default
+
+
+
         })
         .catch(error => {
             console.error('Fetch error:', error);
+            hideSpinner('waiting_spinner');
         });;
 });
+
+function displayWaitingStatus() {
+    const waitingstatus = document.getElementById('waitingstatus');
+    waitingstatus.innerHTML = `Waiting...`;
+};
+
+function hideWaitingStatus() {
+    const waitingstatus = document.getElementById('waitingstatus');
+    waitingstatus.innerHTML = ``;
+
+}
 
 function arrayBufferToBase64(buffer) {
     var binary = '';
@@ -231,4 +260,9 @@ function displayProcessingTime() {
     // Hiển thị thời gian vào div
     const processingTimeDiv = document.getElementById('processingTime');
     processingTimeDiv.innerHTML = `Processing Time: ${processingTimeInSeconds.toFixed(2)} seconds`;
+}
+
+function hideProcessingTime() {
+    const processingTimeDiv = document.getElementById('processingTime');
+    processingTimeDiv.innerHTML = ``;
 }
