@@ -128,6 +128,7 @@
                 </div>
             </div>
         </div>
+        <div id="liveAlertPlaceholder"></div>
     </div>
     <div class="b-example-divider" style="background-color: white;"></div>
     <div class="container px-4">
@@ -139,10 +140,6 @@
                         <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableModels"
                             id="listGroupCheckableModels1" value="" checked="">
                         <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableModels1">
-                            <div class="spinner-border text-success position-absolute end-100 top-0"
-                                style="display: none" role="status" id="spinner3">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
                             HAT-S
                             <span class="d-block small opacity-50">Original HAT-S model without any modifications</span>
                         </label>
@@ -150,10 +147,6 @@
                         <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableModels"
                             id="listGroupCheckableModels2" value="">
                         <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableModels2">
-                            <div class="spinner-border text-success position-absolute end-100 top-0"
-                                style="display: none" role="status" id="spinner4">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
                             HAT-S with Patch-Mosaic
                             <span class="d-block small opacity-50">The HAT-S model applies Patch-Mosaic data
                                 augmentation</span>
@@ -162,10 +155,6 @@
                         <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableModels"
                             id="listGroupCheckableModels3" value="">
                         <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableModels3">
-                            <div class="spinner-border text-success position-absolute end-100 top-0"
-                                style="display: none" role="status" id="spinner5">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
                             HAT-S with Perceptual Loss
                             <span class="d-block small opacity-50">The HAT-S model applies Perceptual Loss</span>
                         </label>
@@ -174,10 +163,6 @@
                             id="listGroupCheckableModels4" value="">
 
                         <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableModels4">
-                            <div class="spinner-border text-success position-absolute end-100 top-0"
-                                style="display: none" role="status" id="spinner6">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
                             HAT-S with MixLosses Loss
                             <span class="d-block small opacity-50">The HAT-S model uses L1 Loss and Perceptual Loss
                                 simultaneously</span>
@@ -190,10 +175,6 @@
                         <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableUpscales"
                             id="listGroupCheckableUpscales1" value="" checked="">
                         <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableUpscales1">
-                            <div class="spinner-border text-success position-absolute end-100 top-0"
-                                style="display: none" role="status" id="spinner1">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
                             Upscale x4
                             <span class="d-block small opacity-50">Supports upscaling images up to 4 times</span>
                         </label>
@@ -201,10 +182,6 @@
                         <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableUpscales"
                             id="listGroupCheckableUpscales2" value="">
                         <label class="list-group-item rounded-3 position-relative" for="listGroupCheckableUpscales2">
-                            <div class="spinner-border text-success position-absolute end-100 top-0"
-                                style="display: none" role="status" id="spinner2">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
                             Upscale x8
                             <span class="d-block small opacity-50">Supports upscaling images up to 8 times</span>
                         </label>
@@ -222,12 +199,12 @@
                 <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
                     <div class="block__image" style="--range: [slide]%;">
                         <div class="block__img block__img--first">
-                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                            <img src="./images/bird_HAT-S_SRx4_from_scratch.png"
                                 class="img-cover">
                         </div>
 
                         <div class="block__img block__img--last">
-                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                            <img src="./images/LRx4-bird.png" class="img-cover">
                         </div>
 
                         <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
@@ -240,12 +217,12 @@
                 <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
                     <div class="block__image" style="--range: [slide]%;">
                         <div class="block__img block__img--first">
-                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                            <img src="./images/bird_HAT-S_SRx4_Patch-Mosaic.png"
                                 class="img-cover">
                         </div>
 
                         <div class="block__img block__img--last">
-                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                            <img src="./images/LRx4-bird.png" class="img-cover">
                         </div>
 
                         <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
@@ -258,12 +235,12 @@
                  <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
                     <div class="block__image" style="--range: [slide]%;">
                         <div class="block__img block__img--first">
-                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                            <img src="./images/bird_HAT-S_SRx4_PerceptualLoss_conv2_2.png"
                                 class="img-cover">
                         </div>
 
                         <div class="block__img block__img--last">
-                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                            <img src="./images/LRx4-bird.png" class="img-cover">
                         </div>
 
                         <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
@@ -276,12 +253,12 @@
                 <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
                     <div class="block__image" style="--range: [slide]%;">
                         <div class="block__img block__img--first">
-                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                            <img src="./images/bird_HAT-S_SRx4_MixLosses.png"
                                 class="img-cover">
                         </div>
 
                         <div class="block__img block__img--last">
-                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                            <img src="./images/LRx4-bird.png" class="img-cover">
                         </div>
 
                         <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
@@ -294,12 +271,12 @@
                 <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
                     <div class="block__image" style="--range: [slide]%;">
                         <div class="block__img block__img--first">
-                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                            <img src="./images/bird_HAT-S_SRx8_from_scratch.png"
                                 class="img-cover">
                         </div>
 
                         <div class="block__img block__img--last">
-                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                            <img src="./images/LRx8-bird.png" class="img-cover">
                         </div>
 
                         <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
@@ -312,12 +289,12 @@
                 <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
                     <div class="block__image" style="--range: [slide]%;">
                         <div class="block__img block__img--first">
-                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                            <img src="./images/bird_HAT-S_SRx8_Patch-Mosaic.png"
                                 class="img-cover">
                         </div>
 
                         <div class="block__img block__img--last">
-                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                            <img src="./images/LRx8-bird.png" class="img-cover">
                         </div>
 
                         <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
@@ -330,12 +307,12 @@
                 <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
                     <div class="block__image" style="--range: [slide]%;">
                         <div class="block__img block__img--first">
-                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                            <img src="./images/bird_HAT-S_SRx8_PerceptualLoss_conv2_2.png"
                                 class="img-cover">
                         </div>
 
                         <div class="block__img block__img--last">
-                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                            <img src="./images/LRx8-bird.png" class="img-cover">
                         </div>
 
                         <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
@@ -348,12 +325,12 @@
                 <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
                     <div class="block__image" style="--range: [slide]%;">
                         <div class="block__img block__img--first">
-                            <img src="../comparison/images/Visualization/Set5/bird_HAT-S_SRx4_from_scratch.png"
+                            <img src="./images/bird_HAT-S_SRx8_MixLosses.png"
                                 class="img-cover">
                         </div>
 
                         <div class="block__img block__img--last">
-                            <img src="../comparison/images/Visualization/Set5/LR-bird.png" class="img-cover">
+                            <img src="./images/LRx8-bird.png" class="img-cover">
                         </div>
 
                         <input class="block__slide" type="range" min="0" max="100" step="0.05" value="50"
