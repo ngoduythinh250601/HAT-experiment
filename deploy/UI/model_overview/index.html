@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/navbar-fixed.css">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
 </head>
 
 <body style="background-color: white; font-family: Open Sans, sans-serif;">
@@ -46,10 +48,229 @@
 
     <main class="container">
         <div class="container px-4 py-5">
-            <p>Waiting!</p>
+            <h2 class="pb-2 fw-bold border-bottom">Network Architecture</h2>
+            <p class="text-body-secondary">Reference to <a href="https://arxiv.org/abs/2205.04437"
+                    target="_blank">Activating More Pixels in Image Super-Resolution Transformer</a>
+            </p>
+            <caption class="text-body-secondary px-2">
+                <ul class="list-unstyled">
+                    <li><strong>The Overall Structure</strong></li>
+                    <li> The overall network consists of three parts, including shallow feature extraction, deep feature
+                        extraction and image reconstruction. Specifically:</li>
+                    <ul>
+                        <li>
+                            For a given low-resolution (LR) input \( I_{LR} \in \mathbb{R}^{H \times W \times C_{in}}
+                            \), we first exploit one convolution layer to extract the shallow feature \( F_0 \in
+                            \mathbb{R}^{H \times W \times C} \)
+                            <br> where \( C_{in} \) and \( C \) denote the channel number of the input and the
+                            intermediate feature.
+                        </li>
+                        <li>
+                            Then, a series of residual hybrid attention groups (RHAG) and one 3 \( \times \) 3
+                            convolution layer \( H_{Conv}(\cdot) \) are utilized to perform the deep feature extraction.
+                        </li>
+                        <li>
+                            After that, we add a global residual connection to fuse shallow features \( F_0 \) and deep
+                            features \( F_D \in
+                            \mathbb{R}^{H \times W \times C} \)
+                        </li>
+                        <li>
+                            Finally, reconstruct the high-resolution result via a reconstruction module.
+                        </li>
+                    </ul>
+                    <li>
+                        As depicted in figure below, each RHAG contains several hybrid attention blocks (HAB), an
+                        overlapping cross-attention block (OCAB) and a 3 \( \times \) 3 convolution layer with a
+                        residual connection. For the reconstruction module, the pixel-shuffle method is adopted to
+                        up-sample the fused feature.
+                    </li>
+                </ul>
+
+            </caption>
+            <img class="card mw-100" src="./images/Network.png">
         </div>
 
+        <div class="container px-4 py-5">
+            <h2 class="pb-2 fw-bold border-bottom">Training settings</h2>
 
+            <caption class="text-body-secondary px-2">
+                <ul>
+                    <li><strong>Optimizer</strong></li>
+                    <ul class="list-unstyled">
+                        <li>
+                            We adopt <em>Adam</em> optimizer to train the model. It is is a stochastic gradient descent
+                            extension
+                            that updates network weights during training. It is a hybrid of the “gradient descent with
+                            momentum” and the “RMSP” algorithms.
+                        </li>
+                        <ul>
+                            <li>
+                                The learning rate is initialized as \( 1 \times e^{-4} \)
+                            </li>
+                            <li>
+                                \( \beta_1 \) is initialized as \( 0.9 \)
+                            </li>
+                            <li>
+                                \( \beta_2 \) is initialized as \( 0.99 \)
+                            </li>
+                        </ul>
+                    </ul>
+                    <br>
+                    <li><strong>Scheduler</strong></li>
+                    <ul class="list-unstyled">
+                        <ul>
+                            <li>
+                                The Scheduler type is \( MultiStepLR \)
+                            </li>
+                            <li>
+                                The \( milestones \) initiated are \( [125000, 200000, 225000, 250000] \)
+                            </li>
+                            <li>
+                                \( gamma \) is initialized as \( 0.99 \)
+                            </li>
+                        </ul>
+                        <li>
+                            This means that the scheduler will reduce the learning rate by half at iteration milestones
+                            \( [125000, 200000, 225000, 250000] \)
+                        </li>
+                    </ul>
+                    <br>
+                    <li><strong>Loss Functions</strong></li>
+                    <ul class="list-unstyled">
+                        <li>
+                            We use a total of 3 different loss functions:
+                        </li>
+                        <ul>
+                            <li>
+                                <em>L1 Loss:</em>
+                                <br>
+                                It also called Mean Absolute Error (MAE), computes the average of the sum of absolute
+                                differences between actual values and predicted values.
+                                <br>
+                                \[ loss_{L1}(Y, Y') = \frac{1}{mn} \sum_{i=1}^{m} \sum_{i=1}^{n} \left| Y(i, j) - Y'(i,
+                                j)
+                                \right| \]
+                                <br>
+                                Where, \( Y \) represents the matrix data of ground truth image.
+                                \( Y' \) represents the matrix data of output image.
+                                \( m \) represents the numbers of rows of pixels and
+                                \( i \) represents the index of that row of the image.
+                                \( n \) represents the number of columns of pixels and
+                                \( j \) represents the index of that column of the image.
+                            </li>
+                            <li>
+                                <em>Perceptual Loss:</em>
+                                <br>
+                                It is designed to capture perceptual differences between images, such as content and
+                                style discrepancies, which are not always evident at the pixel level.
+                                <br>
+                                Here, vgg19 network used as feature extractor and the conv2_2 feature layer will be
+                                extracted in calculating losses. Criterion used for perceptual loss is MAE.
+                                <br>
+                                \[ loss_{Perceptual}(Y, Y') = \frac{1}{n} \sum_{i=1}^{n} \left| feature_i(Y) -
+                                feature_i(Y') \right| \]
+                                <br>
+                                Where, \( Y \) represents the matrix data of ground truth image.
+                                \( Y' \) represents the matrix data of output image.
+                                \( n \) represents the numbers of features in conv2_2 layer and
+                                \( i \) represents the index of that feature of the conv2_2 layer.
+                            </li>
+                            <li>
+                                <em>MixLosses Loss:</em>
+                                <br>
+                                It is designed to combine both the characteristics of <em>L1 Loss</em> and
+                                <em>Perceptual Loss</em>,
+                                specifically balancing differences in color pixels between images and perceptual
+                                differences between images.
+                                <br>
+                                \[ loss_{MixLosses}(Y, Y') = \alpha \times loss_{L1}(Y, Y') + \beta \times
+                                loss_{Perceptual}(Y, Y') \]
+                                <br>
+                                Where, \( Y \) represents the matrix data of ground truth image.
+                                \( Y' \) represents the matrix data of output image.
+                                \( \alpha \) represents the L1 loss weight and
+                                \( \beta \) represents the Perceptual loss weight.
+                            </li>
+                        </ul>
+                    </ul>
+                    <br>
+                    <li><strong>Others</strong></li>
+                    <ul class="list-unstyled">
+                        <ul>
+                            <li>
+                                Total iteration is initialized as \( 250000 \)
+                            </li>
+                            <li>
+                                Dataloader batch size is initiated as \( 4 \)
+                            </li>
+                        </ul>
+                        <li>
+                            This means that each iteration will process a batch of 4 training images and finish training
+                            the model at the 250,000th iteration.
+                        </li>
+                    </ul>
+                </ul>
+
+            </caption>
+        </div>
+
+        <div class="container px-4 py-5">
+            <h2 class="pb-2 fw-bold border-bottom">Metrics</h2>
+            <caption class="text-body-secondary px-2">
+                <ul class="list-unstyled">
+                    <li>We use 2 metrics to evaluate models, including:</li>
+                    <ul>
+                        <li>
+                            <em>Peak Signal-to-Noise Ratio (PSNR):</em>
+                            <br>
+                            It is the ratio between the maximum possible power of an image and the power of corrupting
+                            noise
+                            that affects the quality of its representation. To estimate the PSNR of an image, it is
+                            necessary to compare that image to an ideal clean image with the maximum possible power.
+                            <br>
+                            PSNR is defined as follows:
+                            <br>
+                            \[PSNR = 10 \cdot \log_{10} \frac{{(L - 1)^2}}{{MSE}} \]
+                            <br>
+                            Here, \( L \) is the maximum possible number of intensity levels (minimum
+                            intensity level assumed to
+                            be 0) in an image. In this project, the image data we use are all 8-bit color images, so L
+                            has a
+                            value of 256. \( MSE \) is the mean squared error and it is defined as:
+                            <br>
+                            \[MSE = \frac{1}{mn} \sum_{i=1}^{m} \sum_{i=1}^{n} (Y'(i, j) - Y(i, j))^2 \]
+                            <br>
+                            Where, \( Y \) represents the matrix data of ground truth image.
+                            \( Y' \) represents the matrix data of
+                            output image. \( m \) represents the numbers of rows of pixels and
+                            \( i \) represents the index of that row
+                            of the image. \( n \) represents the number of columns of pixels and
+                            \( j \) represents the index of that
+                            column of the image.
+                        </li>
+                        <br>
+                        <li>
+                            <em>Structured Similarity Index Measurement (SSIM): </em>
+                            <br>
+                            It is a metric of comparison to check the similarity between the original image and
+                            output-image. It measures the perceptual difference between the two images.
+                            <br>
+                            SSIM is defined as follows:
+                            <br>
+                            \[SSIM(P_{Y^*}, P_Y) = \frac{(2\mu_{P_{Y^*}} \mu_{P_Y} + c_1)(2\sigma_{P_{Y^*}} \sigma_{P_Y}
+                            +
+                            c_2)}{(\mu_{P_{Y^*}}^2 + \mu_{P_Y}^2 + c_1)(\sigma_{P_{Y^*}}^2 + \sigma_{P_Y}^2 + c_2)} \]
+                            <br>
+                            Where, \( Y \) represents the matrix data of ground truth image.
+                            \( Y' \) represents the matrix data of output image. 
+                            \( \mu \) represents the knowledge of \( P \) patchs and
+                            \( \sigma \) represents the standard deviation of \( P \) patchs. 
+                            \( c_1 \) and \( c_2 \) are minor contants.
+                        </li>
+                    </ul>
+                </ul>
+            </caption>
+        </div>
 
 
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
