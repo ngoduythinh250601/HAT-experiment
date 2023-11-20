@@ -83,6 +83,55 @@ listGroupCheckableMosaicModel.addEventListener('change', updateModelName);
 listGroupCheckablePerceptualLossModel.addEventListener('change', updateModelName);
 listGroupCheckableMixLossesModel.addEventListener('change', updateModelName);
 
+function submitFeedback() {
+
+    // Get the feedback text from the textarea
+    const feedbackText = document.getElementById('feedback').value;
+    hideResponseFeedback();
+    showSpinner("waiting_spinner_feedback");
+
+    displayWaitingStatusfeedback();
+    // Check if the feedback is not empty
+    if (feedbackText.trim() === '') {
+        alert('Please enter your feedback before submitting.');
+        return;
+    }
+    console.log(feedbackText);
+    const formData = new FormData();
+    formData.append("feedback", feedbackText);
+    var requestOptions = {
+        method: 'POST',
+        headers: new Headers({
+            "ngrok-skip-browser-warning": "69420",
+        }),
+        body: formData,
+    };
+    fetch(host_name + '/feedback', requestOptions)
+        .then(response => {
+            hideWaitingStatusfeedback();
+            hideSpinner('waiting_spinner_feedback');
+            let contentType = response.headers.get('Content-Type');
+            if (contentType.includes('application/json')) {
+                response.json().then(data => {
+                    console.log(data);
+                    if (data['status'] == 'success')
+                        displayResponseFeedback(data['msg']);
+                    if (data['status'] == 'failed')
+                        displayResponseFeedback(data['msg']);
+                });
+            } else {
+                displayResponseFeedback(data['msg']);
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            displayResponseFeedback('Fetch error!');
+            hideSpinner('waiting_spinner_feedback');
+            hideWaitingStatusfeedback();
+        });
+}
+
+
 const alert = (message, type) => {
     const wrapper = document.createElement('div');
     wrapper.innerHTML = [
@@ -105,6 +154,7 @@ setTimeout(function () {
     var resultBlob = new Blob(); // Replace this with your actual processed result blob
     displayProcessedResult(resultBlob);
 }, 5000); // Simulating a delay before displaying the result
+
 function displaySRImage(file) {
     var rect = document.getElementById('SRImage-rect');
     var text = document.getElementById('SRImage-text');
@@ -148,6 +198,7 @@ function displaySRImage(file) {
     // Read the selected file as a data URL
     reader.readAsDataURL(file);
 }
+
 
 uploadBtn.addEventListener("click", e => {
     // Hiển thị biểu tượng quay khi bắt đầu xử lý
@@ -210,13 +261,20 @@ function displayWaitingStatus() {
     const waitingstatus = document.getElementById('waitingstatus');
     waitingstatus.innerHTML = `Waiting...`;
 };
-
+function displayWaitingStatusfeedback() {
+    const waitingstatusfeedback = document.getElementById('waitingstatusfeedback');
+    waitingstatusfeedback.innerHTML = `Waiting...`;
+};
 function hideWaitingStatus() {
     const waitingstatus = document.getElementById('waitingstatus');
     waitingstatus.innerHTML = ``;
 
 }
+function hideWaitingStatusfeedback() {
+    const waitingstatusfeedback = document.getElementById('waitingstatusfeedback');
+    waitingstatusfeedback.innerHTML = ``;
 
+}
 function arrayBufferToBase64(buffer) {
     var binary = '';
     var bytes = new Uint8Array(buffer);
@@ -253,7 +311,15 @@ function displayProcessingTime() {
     const processingTimeDiv = document.getElementById('processingTime');
     processingTimeDiv.innerHTML = `Processing Time: ${processingTimeInSeconds.toFixed(2)} seconds`;
 }
-
+function displayResponseFeedback(text) {
+    // Hiển thị thời gian vào div
+    const feedbackResponse = document.getElementById('feedbackResponse');
+    feedbackResponse.innerHTML = text;
+}
+function hideResponseFeedback() {
+    const feedbackResponse = document.getElementById('feedbackResponse');
+    feedbackResponse.innerHTML = ``;
+}
 function hideProcessingTime() {
     const processingTimeDiv = document.getElementById('processingTime');
     processingTimeDiv.innerHTML = ``;

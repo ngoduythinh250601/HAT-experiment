@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./css/grid.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./css/slider.css">
+
     <!-- <link rel="stylesheet" type="text/css" href="node_modules/img-slider/distr/imgslider.min.css"> -->
     <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/footers/"> -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"> -->
@@ -99,10 +100,10 @@
                             </text>
                         </svg>
                         <figcaption class="figure-caption">Super resolution has improved images using the HAT-S model
-                        </figcaption>
+                            </figcaption>
                     </figure>
+</div>
                 </div>
-            </div>      
             <div class="row mb-3 mx-1 text-center">
                 <div class="col-6 themed-grid-col text-end">
                     <div class="col d-flex flex-col align-items-center justify-content-between ">
@@ -232,7 +233,7 @@
             </div>
             <div class="col themed-grid-col is-visible">
                 HAT-S uses Perceptual Loss | Upscale X4
-                 <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
+                <div class="block block--comparison" mv-app="slider" storage="local" mv-mode="edit">
                     <div class="block__image" style="--range: [slide]%;">
                         <div class="block__img block__img--first">
                             <img src="./images/bird_HAT-S_SRx4_PerceptualLoss_conv2_2.png"
@@ -339,6 +340,50 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="b-example-divider" style="background-color: white;"></div>
+    <div class="container px-4">
+        <div class="themed-container text-center display-6 fw-normal" style="color: black;">Feedback</div>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h4 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Help us improve
+                    </button>
+                </h4>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="bd-example-snippet bd-code-snippet">
+                        <div class="bd-example m-0 border-0 py-3 px-4">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">We hope you’re feeling great
+                                    about your experience with this product, but we want to know for sure.
+                                    <br> Please take a minute to tell us how you really feel.
+                                    <br> Your feedback will help us serve you better. </label>
+                                <input type="text" class="form-control" aria-describedby="feedbackContent"
+                                    id="feedback">
+                            </div>
+                            <div class="d-flex flex-col align-items-center justify-content-end  text-end ">
+
+                                <div class="d-flex flex-col align-items-center justify-content-end position-relative ">
+                                    <div class="spinner-border text-secondary position-absolute end-100"
+                                        style="display: none" role="status" id="waiting_spinner_feedback">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                                <div id="waitingstatusfeedback" style="margin-right: -1%;"></div>
+                                <div class="time" id="feedbackResponse" style="margin-right: 2%;"></div>
+                                <button type="submit" class="btn btn-primary" onclick="submitFeedback()">Submit</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="bootstrap" viewBox="0 0 118 94">
