@@ -1,4 +1,4 @@
-name: HAT-S_SRx4_MixLosses
+name: train_HAT-S_SRx4_MixLosses
 model_type: HATModel
 scale: 4
 num_gpu: 1
