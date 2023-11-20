@@ -1,4 +1,4 @@
-name: train_HAT-S_SRx8_PerceptualLoss_conv2_2
+name: HAT-S_SRx8_PerceptualLoss_conv2_2
 model_type: HATModel
 scale: 8
 num_gpu: 1

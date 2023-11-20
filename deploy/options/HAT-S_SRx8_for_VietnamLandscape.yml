@@ -1,6 +1,6 @@
-name: HAT-S_SRx4_PerceptualLoss_conv2_2
+name: HAT-S_SRx8_for_VietnamLandscape
 model_type: HATModel
-scale: 4
+scale: 8
 num_gpu: 1
 manual_seed: 0
 is_train: False
@@ -10,7 +10,7 @@ dist: False
 # network structures
 network_g:
   type: HAT
-  upscale: 4
+  upscale: 8
   in_chans: 3
   img_size: 64
   window_size: 16
@@ -28,5 +28,5 @@ network_g:
 
 # path
 path:
-  pretrain_network_g: pretrained_models/HAT-S_SRx4_PerceptualLoss_conv2_2.pth
+  pretrain_network_g: pretrained_models/HAT-S_SRx8_for_VietnamLandscape.pth
   strict_load_g: false

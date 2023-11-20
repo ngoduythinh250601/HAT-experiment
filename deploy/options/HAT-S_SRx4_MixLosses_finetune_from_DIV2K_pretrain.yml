@@ -1,4 +1,4 @@
-name: train_HAT-S_SRx4_MixLosses_finetune_from_DIV2K_pretrain
+name: HAT-S_SRx4_MixLosses_finetune_from_DIV2K_pretrain
 model_type: HATModel
 scale: 4
 num_gpu: 1

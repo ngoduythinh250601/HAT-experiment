@@ -1,4 +1,4 @@
-name: train_HAT-S_SRx8_Patch-Mosaic
+name: HAT-S_SRx8_Patch-Mosaic
 model_type: HATModel
 scale: 8
 num_gpu: 1
