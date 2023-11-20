@@ -7,7 +7,7 @@ const listGroupCheckableOriginalModel = document.getElementById("listGroupChecka
 const listGroupCheckableMosaicModel = document.getElementById("listGroupCheckableModels2");
 const listGroupCheckablePerceptualLossModel = document.getElementById("listGroupCheckableModels3");
 const listGroupCheckableMixLossesModel = document.getElementById("listGroupCheckableModels4");
-const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 const loadingSpinner = document.getElementById("loading");
 const imageFile = document.getElementById("image-file");
 const uploadBtn = document.getElementById("upload");
@@ -40,12 +40,12 @@ textModelName.textContent = "Model name: " + dict_modelName[modelName] + ", " + 
 function showSpinner(optionId) {
     var loadingSpinner = document.getElementById(optionId);
     loadingSpinner.style.display = 'block';
-}
+};
 
 function hideSpinner(optionId) {
     var loadingSpinner = document.getElementById(optionId);
     loadingSpinner.style.display = 'none';
-}
+};
 
 function updateYmlFileName() {
     ymlFileName = "HAT-S_" + scale + modelName.substring(5);
@@ -84,16 +84,11 @@ listGroupCheckablePerceptualLossModel.addEventListener('change', updateModelName
 listGroupCheckableMixLossesModel.addEventListener('change', updateModelName);
 
 function submitFeedback() {
-
-    // Get the feedback text from the textarea
     const feedbackText = document.getElementById('feedback').value;
     hideResponseFeedback();
     showSpinner("waiting_spinner_feedback");
-
     displayWaitingStatusfeedback();
-    // Check if the feedback is not empty
     if (feedbackText.trim() === '') {
-        alert('Please enter your feedback before submitting.');
         return;
     }
     console.log(feedbackText);
@@ -115,21 +110,20 @@ function submitFeedback() {
                 response.json().then(data => {
                     console.log(data);
                     if (data['status'] == 'success')
-                        displayResponseFeedback(data['msg']);
+                        displayResponseFeedback("Thank you!");
                     if (data['status'] == 'failed')
                         displayResponseFeedback(data['msg']);
                 });
             } else {
-                displayResponseFeedback(data['msg']);
+                displayResponseFeedback("Unsupported data type!");
             }
         })
         .catch(error => {
-            console.error('Fetch error:', error);
             displayResponseFeedback('Fetch error!');
             hideSpinner('waiting_spinner_feedback');
             hideWaitingStatusfeedback();
         });
-}
+};
 
 
 const alert = (message, type) => {
@@ -197,7 +191,7 @@ function displaySRImage(file) {
 
     // Read the selected file as a data URL
     reader.readAsDataURL(file);
-}
+};
 
 
 uploadBtn.addEventListener("click", e => {
@@ -250,7 +244,6 @@ uploadBtn.addEventListener("click", e => {
             }
         })
         .catch(error => {
-            console.error('Fetch error:', error);
             hideSpinner('waiting_spinner');
             hideWaitingStatus();
             alert('Fetch error!', 'warning');
@@ -269,12 +262,12 @@ function hideWaitingStatus() {
     const waitingstatus = document.getElementById('waitingstatus');
     waitingstatus.innerHTML = ``;
 
-}
+};
 function hideWaitingStatusfeedback() {
     const waitingstatusfeedback = document.getElementById('waitingstatusfeedback');
     waitingstatusfeedback.innerHTML = ``;
 
-}
+};
 function arrayBufferToBase64(buffer) {
     var binary = '';
     var bytes = new Uint8Array(buffer);
@@ -284,7 +277,7 @@ function arrayBufferToBase64(buffer) {
         binary += String.fromCharCode(bytes[i]);
     }
     return btoa(binary);
-}
+};
 
 downloadBtn.addEventListener("click", e => {
     e.preventDefault();
@@ -310,17 +303,17 @@ function displayProcessingTime() {
     // Hiển thị thời gian vào div
     const processingTimeDiv = document.getElementById('processingTime');
     processingTimeDiv.innerHTML = `Processing Time: ${processingTimeInSeconds.toFixed(2)} seconds`;
-}
+};
 function displayResponseFeedback(text) {
     // Hiển thị thời gian vào div
     const feedbackResponse = document.getElementById('feedbackResponse');
     feedbackResponse.innerHTML = text;
-}
+};
 function hideResponseFeedback() {
     const feedbackResponse = document.getElementById('feedbackResponse');
     feedbackResponse.innerHTML = ``;
-}
+};
 function hideProcessingTime() {
     const processingTimeDiv = document.getElementById('processingTime');
     processingTimeDiv.innerHTML = ``;
-}
+};

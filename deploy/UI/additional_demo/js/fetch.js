@@ -5,7 +5,7 @@ const listGroupCheckableUpscalesX4 = document.getElementById("listGroupCheckable
 const listGroupCheckableUpscalesX8 = document.getElementById("listGroupCheckableUpscales2");
 const listGroupCheckableVNLandscapeModel = document.getElementById("listGroupCheckableModels1");
 const listGroupCheckableHumanFacesModel = document.getElementById("listGroupCheckableModels2");
-const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 const loadingSpinner = document.getElementById("loading");
 const imageFile = document.getElementById("image-file");
 const uploadBtn = document.getElementById("upload");
@@ -36,12 +36,12 @@ textModelName.textContent = "Model name: " + dict_modelName[modelName] + ", " + 
 function showSpinner(optionId) {
     var loadingSpinner = document.getElementById(optionId);
     loadingSpinner.style.display = 'block';
-}
+};
 
 function hideSpinner(optionId) {
     var loadingSpinner = document.getElementById(optionId);
     loadingSpinner.style.display = 'none';
-}
+};
 
 function updateYmlFileName() {
     ymlFileName = "HAT-S_" + scale + modelName.substring(5);
@@ -137,7 +137,7 @@ function displaySRImage(file) {
 
     // Read the selected file as a data URL
     reader.readAsDataURL(file);
-}
+};
 
 uploadBtn.addEventListener("click", e => {
     // Hiển thị biểu tượng quay khi bắt đầu xử lý
@@ -205,7 +205,18 @@ function hideWaitingStatus() {
     const waitingstatus = document.getElementById('waitingstatus');
     waitingstatus.innerHTML = ``;
 
-}
+};
+
+function displayWaitingStatusfeedback() {
+    const waitingstatusfeedback = document.getElementById('waitingstatusfeedback');
+    waitingstatusfeedback.innerHTML = `Waiting...`;
+};
+
+function hideWaitingStatusfeedback() {
+    const waitingstatusfeedback = document.getElementById('waitingstatusfeedback');
+    waitingstatusfeedback.innerHTML = ``;
+
+};
 
 function arrayBufferToBase64(buffer) {
     var binary = '';
@@ -216,7 +227,49 @@ function arrayBufferToBase64(buffer) {
         binary += String.fromCharCode(bytes[i]);
     }
     return btoa(binary);
-}
+};
+
+function submitFeedback() {
+    const feedbackText = document.getElementById('feedback').value;
+    hideResponseFeedback();
+    showSpinner("waiting_spinner_feedback");
+    displayWaitingStatusfeedback();
+    if (feedbackText.trim() === '') {
+        return;
+    }
+    console.log(feedbackText);
+    const formData = new FormData();
+    formData.append("feedback", feedbackText);
+    var requestOptions = {
+        method: 'POST',
+        headers: new Headers({
+            "ngrok-skip-browser-warning": "69420",
+        }),
+        body: formData,
+    };
+    fetch(host_name + '/feedback', requestOptions)
+        .then(response => {
+            hideWaitingStatusfeedback();
+            hideSpinner('waiting_spinner_feedback');
+            let contentType = response.headers.get('Content-Type');
+            if (contentType.includes('application/json')) {
+                response.json().then(data => {
+                    console.log(data);
+                    if (data['status'] == 'success')
+                        displayResponseFeedback("Thank you!");
+                    if (data['status'] == 'failed')
+                        displayResponseFeedback(data['msg']);
+                });
+            } else {
+                displayResponseFeedback("Unsupported data type!");
+            }
+        })
+        .catch(error => {
+            displayResponseFeedback('Fetch error!');
+            hideSpinner('waiting_spinner_feedback');
+            hideWaitingStatusfeedback();
+        });
+};
 
 downloadBtn.addEventListener("click", e => {
     e.preventDefault();
@@ -242,9 +295,19 @@ function displayProcessingTime() {
     // Hiển thị thời gian vào div
     const processingTimeDiv = document.getElementById('processingTime');
     processingTimeDiv.innerHTML = `Processing Time: ${processingTimeInSeconds.toFixed(2)} seconds`;
-}
+};
 
 function hideProcessingTime() {
     const processingTimeDiv = document.getElementById('processingTime');
     processingTimeDiv.innerHTML = ``;
-}
+};
+
+function displayResponseFeedback(text) {
+    // Hiển thị thời gian vào div
+    const feedbackResponse = document.getElementById('feedbackResponse');
+    feedbackResponse.innerHTML = text;
+};
+function hideResponseFeedback() {
+    const feedbackResponse = document.getElementById('feedbackResponse');
+    feedbackResponse.innerHTML = ``;
+};
