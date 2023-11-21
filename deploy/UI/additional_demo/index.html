@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="./css/list-groups.css">
     <link rel="stylesheet" type="text/css" href="./css/grid.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
-    <script src="./js/script.js"></script>
     <script src='https://get.mavo.io/mavo.js'></script>
 </head>
 
@@ -95,27 +94,35 @@
                 </div>
             </div>
             <div class="row mb-3 mx-1 text-center">
-                <div class="col-6 themed-grid-col text-end">
-                    <div class="col d-flex flex-col align-items-center justify-content-between ">
-                        <p class="card-text" id="modelNameDisplay">Model name: </p>
-                        <button type="button" class="btn btn-success run" id="upload"
-                            style="background-color: gray;border-color: gray" disabled>Run</button>
-
+                <div class="col-md-6 themed-grid-col">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-start align-items-center">
+                            <p class="card-text" id="modelNameDisplay">Model name: </p>
+                        </div>
+                        <div class="col text-end">
+                            <button type="button" class="btn btn-success run" id="upload"
+                                style="background-color: gray; border-color: gray" disabled>Run</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-6 d-flex flex-col align-items-center justify-content-end themed-grid-col text-end ">
-                    <div class="d-flex flex-col align-items-center justify-content-end position-relative ">
-                        <div class="spinner-border text-secondary position-absolute end-0" style="display: none"
-                            role="status" id="waiting_spinner">
-                            <span class="visually-hidden">Loading...</span>
+                <div class="col-md-6 themed-grid-col">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-start align-items-center">
+                            <div class="d-flex flex-col position-relative ">
+                                <div class="spinner-border text-secondary position-absolute start-100"
+                                    style="display: none" role="status" id="waiting_spinner">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="me-2" id="waitingstatus"></div>
+                            <div class="time me-2" id="processingTime"></div>
+                        </div>
+                        <div class="col text-end">
+                            <button type="button" class="btn btn-success download" id="download"
+                                style="background-color: gray; border-color: gray;" disabled>Download</button>
                         </div>
                     </div>
-                    <div id="waitingstatus" style="margin-right: 2%;"></div>
-                    <div class="time" id="processingTime" style="margin-right: 2%;"></div>
-                    <button type="button" class="btn btn-success download" id="download"
-                        style="background-color: gray; border-color: gray;" disabled>Download</button>
-
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-const host_name = " https://8f13-42-118-228-189.ngrok-free.app/";
+const host_name = "https://e4f5-42-118-228-189.ngrok-free.app";
 
 
 const logPlaceholder = document.getElementById('liveLogPlaceholder');
@@ -192,6 +192,7 @@ $(document).ready(function (e) {
         while (logPlaceholder.hasChildNodes()) {
             logPlaceholder.removeChild(logPlaceholder.firstChild);
         }
+        currentLogDate = defaultDate;
         fetchToServer('del_log', password);
     });
     $("#verifyDelFbForm").submit(function (event) {
@@ -201,6 +202,7 @@ $(document).ready(function (e) {
         while (feedbackTable.hasChildNodes()) {
             feedbackTable.removeChild(feedbackTable.firstChild);
         }
+        currentFeedbackDate = defaultDate;
         fetchToServer("del_feedback", password);
     });
 });
