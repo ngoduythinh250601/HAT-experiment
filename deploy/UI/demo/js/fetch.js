@@ -1,5 +1,5 @@
 // ----- init state -------
-const host_name = "https://e4f5-42-118-228-189.ngrok-free.app";
+const host_name = "https://sensibly-stirring-possum.ngrok-free.app";
 
 const listGroupCheckableUpscalesX4 = document.getElementById("listGroupCheckableUpscales1");
 const listGroupCheckableUpscalesX8 = document.getElementById("listGroupCheckableUpscales2");
