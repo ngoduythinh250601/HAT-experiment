@@ -58,9 +58,9 @@ network_g:
 
 # path
 path:
-  pretrain_network_g: experiments/train_HAT-S_SRx8_on_VietnameseLandscape_from_DIV2K_pretrain/models/net_g_60000.pth
+  pretrain_network_g: ./deploy/pretrained_models/HAT-S_SRx8_from_scratch.pth
   strict_load_g: false
-  resume_state: experiments/train_HAT-S_SRx8_on_VietnameseLandscape_from_DIV2K_pretrain/training_states/60000.state
+  resume_state: ~
 
 # training settings
 train:

@@ -1,8 +1,3 @@
-# GENERATE TIME: Mon Nov  6 09:33:57 2023
-# CMD:
-# ./hat/train.py -opt ./options/train/train_HAT-S_SRx4_MixLosses_finetune_from_DIV2K_pretrain.yml
-
-# general settings
 name: train_HAT-S_SRx4_MixLosses_finetune_from_DIV2K_pretrain
 model_type: HATModel
 scale: 4
@@ -68,7 +63,7 @@ network_g:
 
 # path
 path:
-  pretrain_network_g: experiments/train_HAT-S_SRx4_from_scratch/models/net_g_240000.pth
+  pretrain_network_g: ./deploy/pretrained_models/HAT-S_SRx4_from_scratch.pth
   strict_load_g: false
   resume_state: ~
 

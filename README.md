@@ -1,76 +1,67 @@
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/activating-more-pixels-in-image-super/image-super-resolution-on-set5-4x-upscaling)](https://paperswithcode.com/sota/image-super-resolution-on-set5-4x-upscaling?p=activating-more-pixels-in-image-super)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/activating-more-pixels-in-image-super/image-super-resolution-on-urban100-4x)](https://paperswithcode.com/sota/image-super-resolution-on-urban100-4x?p=activating-more-pixels-in-image-super)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/activating-more-pixels-in-image-super/image-super-resolution-on-set14-4x-upscaling)](https://paperswithcode.com/sota/image-super-resolution-on-set14-4x-upscaling?p=activating-more-pixels-in-image-super)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/activating-more-pixels-in-image-super/image-super-resolution-on-manga109-4x)](https://paperswithcode.com/sota/image-super-resolution-on-manga109-4x?p=activating-more-pixels-in-image-super)
+# HAT-experiment [[Web Demo](https://ngoduythinh250601.github.io/SISR-UI)]
 
-# HAT [![Replicate](https://replicate.com/cjwbw/hat/badge)](https://replicate.com/cjwbw/hat)
+### Reference to [Activating More Pixels in Image Super-Resolution Transformer](https://arxiv.org/abs/2205.04437)
 
-### Activating More Pixels in Image Super-Resolution Transformer [[Paper Link]](https://arxiv.org/abs/2205.04437)
-[Xiangyu Chen](https://chxy95.github.io/), [Xintao Wang](https://xinntao.github.io/), [Jiantao Zhou](https://www.fst.um.edu.mo/personal/jtzhou/) and [Chao Dong](https://scholar.google.com.hk/citations?user=OSDCB0UAAAAJ&hl=zh-CN)
+## Overview 
 
-### HAT: Hybrid Attention Transformer for Image Restoration [[Paper Link]](https://arxiv.org/abs/2309.05239)
-[Xiangyu Chen](https://chxy95.github.io/), [Xintao Wang](https://xinntao.github.io/), [Wenlong Zhang](https://wenlongzhang0517.github.io/), [Xiangtao Kong](https://xiangtaokong.github.io/), [Jiantao Zhou](https://www.fst.um.edu.mo/personal/jtzhou/) and [Chao Dong](https://scholar.google.com.hk/citations?user=OSDCB0UAAAAJ&hl=zh-CN)
+If you want detailed information about the dataset, training results and visualization, visit 
+[here](https://ngoduythinh250601.github.io/SISR-UI/comparison/).
 
-## Updates
-- ✅ 2022-05-09: Release the first version of the paper at Arxiv.
-- ✅ 2022-05-20: Release the codes, models and results of HAT.
-- ✅ 2022-08-29: Add a Replicate demo for SRx4.
-- ✅ 2022-09-25: Add the tile mode for inference with limited GPU memory.
-- ✅ 2022-11-24: Upload a GAN-based HAT model for **Real-World SR** (Real_HAT_GAN_SRx4.pth). 
-- ✅ 2023-03-19: Update paper to CVPR version. Small HAT models are added.
-- ✅ 2023-04-05: Upload the HAT-S codes, models and results. 
-- ✅ 2023-08-01: Upload another GAN model for sharper results (Real_HAT_GAN_SRx4_sharper.pth). 
-- ✅ 2023-08-01: Upload the training configs for the **Real-World GAN-based model**.
-- ✅ 2023-09-11: Release the extended version of the paper at [Arxiv](https://arxiv.org/abs/2309.05239).
-- **(To do)** Add the tile mode for Replicate demo. 
-- **(To do)** Update the Replicate demo for Real-World SR. 
-- **(To do)** Add HAT models for Multiple Image Restoration tasks. 
+### Training results
 
-## Overview
-<img src="https://raw.githubusercontent.com/chxy95/HAT/master/figures/Performance_comparison.png" width="600"/>
+**PSNR benchmark results on SRx4.**
+| Model                         | Set5  | Set14 | BSD100 | Manga109 |
+| ----------------------------- | :---: | :---: | :----: | :------: |
+| HAT-S original                | 32.52 | 28.93 | 27.81  |  31.54   |
+| HAT-S applies Patch-Mosaic    | 32.55 | 28.91 | 27.80  |  31.45   |
+| HAT-S applies Perceptual Loss | 24.83 | 22.72 | 22.25  |  23.75   |
+| HAT-S applies MixLosses Loss  | 32.25 | 28.66 | 27.57  |  31.37   |
 
-**Benchmark results on SRx4 without x2 pretraining. Mulit-Adds are calculated for a 64x64 input.**
-| Model | Params(M) | Multi-Adds(G) | Set5 | Set14 | BSD100 | Urban100 | Manga109 |
-|-------|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
-| [SwinIR](https://github.com/JingyunLiang/SwinIR) |   11.9    | 53.6 | 32.92 | 29.09 | 27.92 | 27.45 | 32.03 |
-| HAT-S |   9.6    | 54.9 | 32.92 | 29.15 | 27.97 | 27.87 | 32.35 |
-| HAT |   20.8    | 102.4 | 33.04 | 29.23 | 28.00 | 27.97 | 32.48 |
+**PSNR benchmark results on SRx8.**
+| Model                         | Set5  | Set14 | BSD100 | Manga109 |
+| ----------------------------- | :---: | :---: | :----: | :------: |
+| HAT-S original                | 27.03 | 24.96 | 24.86  |  24.32   |
+| HAT-S applies Patch-Mosaic    | 27.01 | 24.97 | 24.85  |  24.19   |
+| HAT-S applies Perceptual Loss | 22.74 | 22.00 | 22.25  |  21.18   |
+| HAT-S applies MixLosses Loss  | 26.87 | 24.86 | 24.78  |  24.34   |
 
-## Real-World SR Results
-**Note that:**
-- The default settings in the training configs (almost the same as Real-ESRGAN) are for training **Real_HAT_GAN_SRx4_sharper**.
-- **Real_HAT_GAN_SRx4** is trained using similar settings without USM the ground truth.
-- **Real_HAT_GAN_SRx4** would have better fidelity.
-- **Real_HAT_GAN_SRx4_sharper** would have better perceptual quality.
+### Visualization
+**HAT-S applies Patch-Mosaic with upscale x4**
 
-**Results produced by** Real_HAT_GAN_SRx4_sharper.pth.
+<img src="./figures/Visual_Patch-Mosaic_result.png" width=600>
 
-<img src="https://raw.githubusercontent.com/chxy95/HAT/master/figures/Visual_Results.png" width="800"/>
+**HAT-S applies Perceptual Loss with upscale x4**
 
-**Comparison with the state-of-the-art Real-SR methods.**
+<img src="./figures/Visual_Perceptual_result.png" width=600>
 
-<img src="https://raw.githubusercontent.com/chxy95/HAT/master/figures/Comparison.png" width="800"/>
+**HAT-S applies MixLosses Loss with upscale x4**
 
-## Citations
-#### BibTeX
+<img src="./figures/Visual_MixLosses_result.png" width=600>
 
-    @InProceedings{chen2023activating,
-        author    = {Chen, Xiangyu and Wang, Xintao and Zhou, Jiantao and Qiao, Yu and Dong, Chao},
-        title     = {Activating More Pixels in Image Super-Resolution Transformer},
-        booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-        month     = {June},
-        year      = {2023},
-        pages     = {22367-22377}
-    }
-**Google Scholar has unknown bugs for indexing this paper recently, while it can still be cited by the above BibTeX.**
+## HAT-S for specific tasks
 
+### Training results
 
-    @article{chen2023hat,
-      title={HAT: Hybrid Attention Transformer for Image Restoration},
-      author={Chen, Xiangyu and Wang, Xintao and Zhang, Wenlong and Kong, Xiangtao and Qiao, Yu and Zhou, Jiantao and Dong, Chao},
-      journal={arXiv preprint arXiv:2309.05239},
-      year={2023}
-    }
+**Benchmark results using PSNR scores on HAT-S trained on the VietnameLandscape dataset.**
+| Model                  | Upscale | VietnamLandscape | Set5  | Set14 | BSD100 |
+| ---------------------- | :-----: | :--------------: | :---: | :---: | :----: |
+| HAT-S for VN landscape |   x4    |      25.98       | 32.44 | 28.76 | 27.75  |
+| HAT-S for VN landscape |   x8    |      23.67       | 26.98 | 24.93 | 24.84  |
+
+**Benchmark results using PSNR scores on HAT-S trained on the HumanFaces dataset.**
+| Model                     | Upscale | HumanFaces | Set5  | Set14 | BSD100 |
+| ------------------------- | :-----: | :--------: | :---: | :---: | :----: |
+| HAT-S denoise Human Faces |   x4    |   28.37    | 28.94 | 26.40 | 26.09  |
+| HAT-S denoise Human Faces |   x8    |   24.90    | 25.16 | 23.60 | 23.91  |
+
+### Visualization
+**HAT-S for VN landscape SRx4 with upscale x4**
+
+<img src="./figures/Visual_VietnamLandscape_result.png" width=600>
+
+**HAT-S denoise Human Faces with upscale x4**
+
+<img src="./figures/Visual_HumanFaces_result.png" width=600>
 
 ## Environment
 - [PyTorch >= 1.7](https://pytorch.org/) **(Recommend **NOT** using torch 1.8!!! It would cause abnormal performance.)**
@@ -84,38 +75,33 @@ python setup.py develop
 ```
 
 ## How To Test
-
-Without implementing the codes, [chaiNNer](https://github.com/chaiNNer-org/chaiNNer) is a nice tool to run our models.
-
-Otherwise, 
 - Refer to `./options/test` for the configuration file of the model to be tested, and prepare the testing data and pretrained model.  
-- The pretrained models are available at
-[Google Drive](https://drive.google.com/drive/folders/1HpmReFfoUqUbnAOQ7rvOeNU3uf_m69w0?usp=sharing) or [Baidu Netdisk](https://pan.baidu.com/s/1u2r4Lc2_EEeQqra2-w85Xg) (access code: qyrl).  
-- Then run the following codes (taking `HAT_SRx4_ImageNet-pretrain.pth` as an example):
+- The pretrained models are available at `./deploy/pretrained_models/` or 
+[Google Drive](https://drive.google.com/drive/folders/1ELuwIMZQblXHiDKTxcds2nNZ1eo53En1?usp=sharing)
+- Then run the following codes (taking `HAT-S_SRx4_from_scratch.pth` as an example):
 ```
-python hat/test.py -opt options/test/HAT_SRx4_ImageNet-pretrain.yml
+python hat/test.py -opt options/test/HAT-S_SRx4_from_scratch.yml
 ```
 The testing results will be saved in the `./results` folder.  
 
-- Refer to `./options/test/HAT_SRx4_ImageNet-LR.yml` for **inference** without the ground truth image.
-
-**Note that the tile mode is also provided for limited GPU memory when testing. You can modify the specific settings of the tile mode in your custom testing option by referring to `./options/test/HAT_tile_example.yml`.**
+**Note that:**
+- Refer to `./options/test/HAT-S_LR.yml` for **inference** without the ground truth image.
+- The tile mode is also provided for **limited GPU memory** when testing. Refer to `./options/test/HAT-S_tile_examples.yml`.
 
 ## How To Train
 - Refer to `./options/train` for the configuration file of the model to train.
-- Preparation of training data can refer to [this page](https://github.com/XPixelGroup/BasicSR/blob/master/docs/DatasetPreparation.md). ImageNet dataset can be downloaded at the [official website](https://image-net.org/challenges/LSVRC/2012/2012-downloads.php).
-- The training command is like
+- All the datasets can be downloaded at the [Google Drive](https://drive.google.com/drive/folders/1cbHDFNmvPoBAbo-GX39mcJp8hP86Gv7T?usp=sharing).
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node=8 --master_port=4321 hat/train.py -opt options/train/train_HAT_SRx2_from_scratch.yml --launcher pytorch
+python hat/train.py -opt options/train/train_HAT-S_SRx4_from_scratch.yml
 ```
-- Note that the default batch size per gpu is 4, which will cost about 20G memory for each GPU.  
+- Note that the default batch size per gpu is 4, which will cost about 12G GPU memory.
 
 The training logs and weights will be saved in the `./experiments` folder.
 
 ## Results
 The inference results on benchmark datasets are available at
-[Google Drive](https://drive.google.com/drive/folders/1t2RdesqRVN7L6vCptneNRcpwZAo-Ub3L?usp=sharing) or [Baidu Netdisk](https://pan.baidu.com/s/1CQtLpty-KyZuqcSznHT_Zw) (access code: 63p5).
+[Google Drive](https://drive.google.com/drive/folders/1JPPVPAAxsGEKKDn_jUu6TBtan91uyBkq?usp=sharing).
 
 
 ## Contact
-If you have any question, please email chxy95@gmail.com or join in the [Wechat group of BasicSR](https://github.com/XPixelGroup/BasicSR#-contact) to discuss with the authors.
+If you have any question, please email ngoduythinh250601@gmail.com or email truongnnse150331@fpt.edu.vn.

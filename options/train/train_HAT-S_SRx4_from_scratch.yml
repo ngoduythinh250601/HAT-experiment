@@ -10,8 +10,8 @@ datasets:
   train:
     name: DIV2K
     type: PairedImageDataset
-    dataroot_gt: datasets/DIV2K/DIV2K_train_HR_sub
-    dataroot_lq: datasets/DIV2K/DIV2K_train_LR_bicubic/X4_sub
+    dataroot_gt: datasets/DIV2K-X8/DIV2K_train_HR
+    dataroot_lq: datasets/DIV2K-X8/DIV2K_train_LR_bicubic/X4
 
     io_backend:
       type: disk
@@ -94,7 +94,7 @@ train:
 # validation settings
 val:
   val_freq: !!float 2e4
-  save_img: false
+  save_img: true
   pbar: False
 
   metrics:
