@@ -1,6 +1,6 @@
 ## How To Build APIs
 
-You need to set up the environment for this repository first ([Read here](../README.md))
+You need to set up the environment for this repository first ([Read here](../README.md#environment))
 
 Install packages in requirements.txt.
 ```
