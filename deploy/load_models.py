@@ -2,9 +2,10 @@ from basicsr.models import build_model
 from basicsr.utils.options import dict2str, parse_options
 from basicsr.utils.img_util import img2tensor, tensor2img
 import yaml
-from collections import OrderedDict 
+from collections import OrderedDict
 from hat.models.hat_model import HATModel
 import os.path as osp
+
 
 def ordered_yaml():
     """Support OrderedDict for yaml.
@@ -30,31 +31,34 @@ def ordered_yaml():
     Loader.add_constructor(_mapping_tag, dict_constructor)
     return Loader, Dumper
 
+
 class Model:
     def __init__(self, cwd, yml_dir):
         self.cwd = cwd
         self.yml_dir = yml_dir
-        with open(osp.abspath(yml_dir), mode='r') as f:
+        with open(osp.abspath(yml_dir), mode="r") as f:
             self.opt = yaml.load(f, Loader=ordered_yaml()[0])
-        self.opt['path']['pretrain_network_g'] = osp.join(self.cwd, self.opt['path']['pretrain_network_g'])
+        self.opt["path"]["pretrain_network_g"] = osp.join(
+            self.cwd, self.opt["path"]["pretrain_network_g"]
+        )
+        self.opt["tile"] = {"tile_size": 512}
         self.load()
 
     def load(self):
         self.model = HATModel(self.opt)
-    
+
     def process(self, cv2_image):
         img = img2tensor(cv2_image)
         img = img.unsqueeze(0)
         data = dict()
-        data['lq'] = img
+        data["lq"] = img
         self.model.feed_data(data)
         self.model.pre_process()
-        self.model.process()
+        self.model.tile_process()
         self.model.post_process()
-        visuals = self.model.get_current_visuals()
-        sr_img = tensor2img([visuals['result']])
+        sr_img = tensor2img(self.model.output.detach().cpu())
         return sr_img
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     models = Model()

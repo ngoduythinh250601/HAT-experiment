@@ -6,8 +6,9 @@ wandb/*
 tmp/*
 modify_model.py
 hat/version.py
-deploy/images/*
 deploy/*.txt
+deploy/SR_images/*
+!deploy/SR_images/README.md
 
 *.DS_Store
 
