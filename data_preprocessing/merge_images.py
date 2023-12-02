@@ -120,5 +120,114 @@ if __name__ == "__main__":
     #     ],
     #     saved_name="merged2.png",
     # )
+    # merge_list_of_images(
+    #     folder_dir=r"e:\FPT University\Semester 9\AIP490\Reports\Final Report\Figures\Plot",
+    #     image_names=[
+    #         "PSNR_Set5_x4.png",
+    #         "SSIM_Set5_x4.png",
+    #     ],
+    #     saved_name="Set5_x4.png",
+    # )
+    # merge_list_of_images(
+    #     folder_dir=r"e:\FPT University\Semester 9\AIP490\Reports\Final Report\Figures\Plot",
+    #     image_names=[
+    #         "PSNR_Set5_x8.png",
+    #         "SSIM_Set5_x8.png",
+    #     ],
+    #     saved_name="Set5_x8.png",
+    # )
+    # merge_list_of_images(
+    #     folder_dir=r"e:\FPT University\Semester 9\AIP490\Reports\Final Report\Figures\Plot",
+    #     image_names=[
+    #         "PSNR_Set14_x4.png",
+    #         "SSIM_Set14_x4.png",
+    #     ],
+    #     saved_name="Set14_x4.png",
+    # )
+    # merge_list_of_images(
+    #     folder_dir=r"e:\FPT University\Semester 9\AIP490\Reports\Final Report\Figures\Plot",
+    #     image_names=[
+    #         "PSNR_Set14_x8.png",
+    #         "SSIM_Set14_x8.png",
+    #     ],
+    #     saved_name="Set14_x8.png",
+    # )
+    merge_list_of_images(
+        folder_dir=r"e:\FPT University\Semester 9\AIP490\Reports\Final Report\Figures\Datasets\Set5",
+        image_names=[
+            "baby.png",
+            "bird.png",
+            "butterfly.png",
+            "head.png",
+            "woman.png",
+        ],
+        saved_name="merge.png",
+    )
+    merge_list_of_images(
+        folder_dir=r"e:\FPT University\Semester 9\AIP490\Reports\Final Report\Figures\Datasets\Set14",
+        image_names=[
+            "baboon.png",
+            "comic.png",
+            "foreman.png",
+            "lenna.png",
+            "zebra.png",
+        ],
+        saved_name="merge.png",
+    )
+    merge_list_of_images(
+        folder_dir=r"e:\FPT University\Semester 9\AIP490\Reports\Final Report\Figures\Datasets\Manga109",
+        image_names=[
+            "AisazuNihaIrarenai.png",
+            "HarukaRefrain.png",
+            "PikaruGenkiDesu.png",
+            "TouyouKidan.png",
+            "UltraEleven.png",
+        ],
+        saved_name="merge.png",
+    )
+    merge_list_of_images(
+        folder_dir=r"e:\FPT University\Semester 9\AIP490\Reports\Final Report\Figures\Datasets\HumanFaces",
+        image_names=[
+            "0000.png",
+            "0045.png",
+            "0100.png",
+            "0111.png",
+            "0234.png",
+        ],
+        saved_name="merge.png",
+    )
+    merge_list_of_images(
+        folder_dir=r"e:\FPT University\Semester 9\AIP490\Reports\Final Report\Figures\Datasets\DIV2K",
+        image_names=[
+            "0001.png",
+            "0036.png",
+            "0275.png",
+            "0134.png",
+            "0407.png",
+        ],
+        saved_name="merge.png",
+    )
+    merge_list_of_images(
+        folder_dir=r"e:\FPT University\Semester 9\AIP490\Reports\Final Report\Figures\Datasets\BSD100",
+        image_names=[
+            "3096.png",
+            "12084.png",
+            "38092.png",
+            "65033.png",
+            "126007.png",
+        ],
+        saved_name="merge.png",
+    )
+    merge_list_of_images(
+        folder_dir=r"e:\FPT University\Semester 9\AIP490\Reports\Final Report\Figures\Datasets\VietnamLandscape",
+        image_names=[
+            "00713.png",
+            "00750.png",
+            "00832.png",
+            "00849.png",
+            "00939.png",
+        ],
+        saved_name="merge.png",
+    )
 
     pass
